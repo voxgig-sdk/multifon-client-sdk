@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://sm.megafon.ru"
+      }
+      description: "The Multifon Client API allows users to manage their account through GET and POST methods. Users can retrieve and set routing, calling lines, status, password, balance, and profile information using specific URL parameters."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://sm.megafon.ru"
+        }
+      ]
+      title: "Multifon Client API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

@@ -1,0 +1,58 @@
+# Entity: api
+
+main: kit: entity: api: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "message"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "api"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "method"
+                orig: "method"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/api"
+          parts: [
+            "api"
+          ]
+          select: {
+            exist: [
+              "method"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

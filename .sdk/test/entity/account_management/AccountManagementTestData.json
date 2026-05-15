@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "account_management": {
+      "ACCOUNT_MANAGEMENT00": {},
+      "ACCOUNT_MANAGEMENT01": {},
+      "ACCOUNT_MANAGEMENT02": {}
+    }
+  },
+  "new": {
+    "account_management": {
+      "account_management_ref01": {}
+    }
+  }
+}

@@ -1,0 +1,495 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Multifon Client API",
+    "description": "The Multifon Client API allows users to manage their account through GET and POST methods. Users can retrieve and set routing, calling lines, status, password, balance, and profile information using specific URL parameters.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://sm.megafon.ru"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sm.megafon.ru",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Account Management",
+      "description": "Operations for managing Multifon account settings"
+    }
+  ],
+  "paths": {
+    "/api": {
+      "get": {
+        "tags": [
+          "Account Management"
+        ],
+        "summary": "Retrieve account information",
+        "description": "Get various account details including routing, calling lines, status, balance, and profile information",
+        "operationId": "getAccountInfo",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "query",
+            "description": "The method to retrieve specific information",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "getRouting",
+                "getCallingLines",
+                "getStatus",
+                "getBalance",
+                "getProfile"
+              ]
+            }
+          },
+          {
+            "name": "auth",
+            "in": "query",
+            "description": "Authentication token or credentials",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/RoutingResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CallingLinesResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/StatusResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/BalanceResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProfileResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication required or failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BasicAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Account Management"
+        ],
+        "summary": "Update account settings",
+        "description": "Set various account settings including routing, calling lines, status, and password",
+        "operationId": "updateAccountSettings",
+        "parameters": [
+          {
+            "name": "method",
+            "in": "query",
+            "description": "The method to set specific settings",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "setRouting",
+                "setCallingLines",
+                "setStatus",
+                "setPassword"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/SetRoutingRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SetCallingLinesRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SetStatusRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SetPasswordRequest"
+                  }
+                ]
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "The value to set for the specified method"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters or data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Authentication required or failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BasicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RoutingResponse": {
+        "type": "object",
+        "properties": {
+          "routing": {
+            "type": "object",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Whether routing is enabled"
+              },
+              "rules": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "destination": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "CallingLinesResponse": {
+        "type": "object",
+        "properties": {
+          "lines": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string",
+                  "description": "Phone number"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Line name or label"
+                },
+                "active": {
+                  "type": "boolean",
+                  "description": "Whether the line is active"
+                }
+              }
+            }
+          }
+        }
+      },
+      "StatusResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Current account status",
+            "enum": [
+              "active",
+              "inactive",
+              "suspended"
+            ]
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last status update timestamp"
+          }
+        }
+      },
+      "BalanceResponse": {
+        "type": "object",
+        "properties": {
+          "balance": {
+            "type": "number",
+            "format": "double",
+            "description": "Current account balance"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code",
+            "example": "RUB"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last balance update timestamp"
+          }
+        }
+      },
+      "ProfileResponse": {
+        "type": "object",
+        "properties": {
+          "profile": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "User identifier"
+              },
+              "phoneNumber": {
+                "type": "string",
+                "description": "Primary phone number"
+              },
+              "email": {
+                "type": "string",
+                "format": "email",
+                "description": "Email address"
+              },
+              "name": {
+                "type": "string",
+                "description": "User full name"
+              },
+              "registrationDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Account registration date"
+              }
+            }
+          }
+        }
+      },
+      "SetRoutingRequest": {
+        "type": "object",
+        "required": [
+          "enabled"
+        ],
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Enable or disable routing"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "destination": {
+                  "type": "string"
+                },
+                "priority": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SetCallingLinesRequest": {
+        "type": "object",
+        "required": [
+          "lines"
+        ],
+        "properties": {
+          "lines": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "string"
+                },
+                "active": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SetStatusRequest": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "description": "New account status"
+          }
+        }
+      },
+      "SetPasswordRequest": {
+        "type": "object",
+        "required": [
+          "currentPassword",
+          "newPassword"
+        ],
+        "properties": {
+          "currentPassword": {
+            "type": "string",
+            "format": "password",
+            "description": "Current password"
+          },
+          "newPassword": {
+            "type": "string",
+            "format": "password",
+            "description": "New password"
+          }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Success message"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Error code"
+              },
+              "message": {
+                "type": "string",
+                "description": "Error message"
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "auth",
+        "description": "API key authentication via query parameter"
+      },
+      "BasicAuth": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "Basic HTTP authentication"
+      }
+    }
+  }
+}

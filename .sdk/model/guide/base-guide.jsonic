@@ -1,0 +1,20 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 1
+  metrics: count: method: 2
+
+  entity: account_management: {
+    path: "/api": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: api: {
+    path: "/api": {
+      op: create: method: *POST
+    }
+  }
+
+}
