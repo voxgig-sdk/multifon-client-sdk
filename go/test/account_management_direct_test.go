@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/multifon-client-sdk"
-	"github.com/voxgig-sdk/multifon-client-sdk/core"
+	sdk "github.com/voxgig-sdk/multifon-client-sdk/go"
+	"github.com/voxgig-sdk/multifon-client-sdk/go/core"
 )
 
 func TestAccountManagementDirect(t *testing.T) {

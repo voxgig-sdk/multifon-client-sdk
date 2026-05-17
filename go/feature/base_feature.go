@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/multifon-client-sdk/core"
+	"github.com/voxgig-sdk/multifon-client-sdk/go/core"
 )
 
 type BaseFeature struct {

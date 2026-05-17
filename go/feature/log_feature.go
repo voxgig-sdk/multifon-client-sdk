@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/multifon-client-sdk/core"
+	"github.com/voxgig-sdk/multifon-client-sdk/go/core"
 )
 
 type LogFeature struct {

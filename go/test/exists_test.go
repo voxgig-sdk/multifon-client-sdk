@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/multifon-client-sdk"
+	sdk "github.com/voxgig-sdk/multifon-client-sdk/go"
 )
 
 func TestExists(t *testing.T) {

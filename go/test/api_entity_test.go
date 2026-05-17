@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/multifon-client-sdk"
-	"github.com/voxgig-sdk/multifon-client-sdk/core"
+	sdk "github.com/voxgig-sdk/multifon-client-sdk/go"
+	"github.com/voxgig-sdk/multifon-client-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/multifon-client-sdk/go/utility/struct"
 )
 
 func TestApiEntity(t *testing.T) {

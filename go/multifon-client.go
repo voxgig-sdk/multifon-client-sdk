@@ -1,10 +1,10 @@
 package voxgigmultifonclientsdk
 
 import (
-	"github.com/voxgig-sdk/multifon-client-sdk/core"
-	"github.com/voxgig-sdk/multifon-client-sdk/entity"
-	"github.com/voxgig-sdk/multifon-client-sdk/feature"
-	_ "github.com/voxgig-sdk/multifon-client-sdk/utility"
+	"github.com/voxgig-sdk/multifon-client-sdk/go/core"
+	"github.com/voxgig-sdk/multifon-client-sdk/go/entity"
+	"github.com/voxgig-sdk/multifon-client-sdk/go/feature"
+	_ "github.com/voxgig-sdk/multifon-client-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

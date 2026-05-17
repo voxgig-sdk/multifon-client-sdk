@@ -1,9 +1,15 @@
 {
   "existing": {
     "account_management": {
-      "ACCOUNT_MANAGEMENT00": {},
-      "ACCOUNT_MANAGEMENT01": {},
-      "ACCOUNT_MANAGEMENT02": {}
+      "ACCOUNT_MANAGEMENT00": {
+        "id": "ACCOUNT_MANAGEMENT00"
+      },
+      "ACCOUNT_MANAGEMENT01": {
+        "id": "ACCOUNT_MANAGEMENT01"
+      },
+      "ACCOUNT_MANAGEMENT02": {
+        "id": "ACCOUNT_MANAGEMENT02"
+      }
     }
   },
   "new": {

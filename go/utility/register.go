@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/multifon-client-sdk/core"
+import "github.com/voxgig-sdk/multifon-client-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll
