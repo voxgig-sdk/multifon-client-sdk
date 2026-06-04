@@ -99,14 +99,12 @@ func account_managementDirectSetup(mockres any) *account_managementDirectSetupRe
 	env := envOverride(map[string]any{
 		"MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID": map[string]any{},
 		"MULTIFONCLIENT_TEST_LIVE":    "FALSE",
-		"MULTIFONCLIENT_APIKEY":       "NONE",
 	})
 
 	live := env["MULTIFONCLIENT_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MULTIFONCLIENT_APIKEY"],
 		}
 		client := sdk.NewMultifonClientSDK(mergedOpts)
 

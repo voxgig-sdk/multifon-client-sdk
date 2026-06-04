@@ -16,8 +16,26 @@ main: {
       ]
       title: "Multifon Client API"
       version: "1.0.0"
+      tagline: "Manage Multifon (MegaFon) phone accounts: routing, lines, status, password, balance and profile"
+      homepage: "https://sm.megafon.ru"
+      docs_url: "https://sm.megafon.ru/sm/client/"
+      about_md: `Multifon is a Russian VoIP / multi-device calling service operated by [MegaFon](https://www.megafon.ru/). The Client API lets a subscriber programmatically manage their Multifon account at \`https://sm.megafon.ru/sm/client/\`, using their phone number as the login and their Multifon password.
+
+What you get from the API:
+
+- **Routing** — switch incoming calls between GSM, SIP, or combined mode.
+- **Calling lines** — set the number of concurrent SIP lines (in the 2–20 range).
+- **Status** — check whether the account is active or blocked.
+- **Password** — update the account password.
+- **Balance** — read the current account balance.
+- **Profile** — fetch the full account profile.
+
+Requests can be made as either GET (with \`login\` and \`password\` URL parameters) or POST (form data). The service is HTTP-based, returns simple XML responses, and is intended for use by the account owner — there is no separate API key or OAuth flow.`
+      entity_desc: {
+        account_management: "Operations on the subscriber's own Multifon account — routing, calling lines, status, password, balance and profile — under `https://sm.megafon.ru/sm/client/`."
+        api: "Generic catch-all grouping for the Multifon Client HTTP endpoints exposed at `sm.megafon.ru/sm/client/`."
+      }
+      auth: false
     }
   }
-}
-
 }

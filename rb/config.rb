@@ -15,9 +15,6 @@ module MultifonClientConfig
       },
       "options" => {
         "base" => "https://sm.megafon.ru",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

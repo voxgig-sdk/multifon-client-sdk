@@ -16,7 +16,16 @@
           }
         ],
         "title": "Multifon Client API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Manage Multifon (MegaFon) phone accounts: routing, lines, status, password, balance and profile",
+        "homepage": "https://sm.megafon.ru",
+        "docs_url": "https://sm.megafon.ru/sm/client/",
+        "about_md": "Multifon is a Russian VoIP / multi-device calling service operated by [MegaFon](https://www.megafon.ru/). The Client API lets a subscriber programmatically manage their Multifon account at `https://sm.megafon.ru/sm/client/`, using their phone number as the login and their Multifon password.\n\nWhat you get from the API:\n\n- **Routing** — switch incoming calls between GSM, SIP, or combined mode.\n- **Calling lines** — set the number of concurrent SIP lines (in the 2–20 range).\n- **Status** — check whether the account is active or blocked.\n- **Password** — update the account password.\n- **Balance** — read the current account balance.\n- **Profile** — fetch the full account profile.\n\nRequests can be made as either GET (with `login` and `password` URL parameters) or POST (form data). The service is HTTP-based, returns simple XML responses, and is intended for use by the account owner — there is no separate API key or OAuth flow.",
+        "entity_desc": {
+          "account_management": "Operations on the subscriber's own Multifon account — routing, calling lines, status, password, balance and profile — under `https://sm.megafon.ru/sm/client/`.",
+          "api": "Generic catch-all grouping for the Multifon Client HTTP endpoints exposed at `sm.megafon.ru/sm/client/`."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -24,7 +33,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "account_management": {
