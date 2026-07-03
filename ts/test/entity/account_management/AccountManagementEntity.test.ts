@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID': idmap,
     'MULTIFON_CLIENT_TEST_LIVE': 'FALSE',
     'MULTIFON_CLIENT_TEST_EXPLAIN': 'FALSE',
+    'MULTIFON_CLIENT_APIKEY': 'NONE',
   })
 
   idmap = env['MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MultifonClientSDK(merge([
       {
+        apikey: env.MULTIFON_CLIENT_APIKEY,
       },
       extra
     ]))

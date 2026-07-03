@@ -87,6 +87,7 @@ def _api_basic_setup(extra):
         "MULTIFONCLIENT_TEST_API_ENTID": idmap,
         "MULTIFONCLIENT_TEST_LIVE": "FALSE",
         "MULTIFONCLIENT_TEST_EXPLAIN": "FALSE",
+        "MULTIFONCLIENT_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -97,6 +98,7 @@ def _api_basic_setup(extra):
     if env.get("MULTIFONCLIENT_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("MULTIFONCLIENT_APIKEY"),
             },
             extra or {},
         ])

@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID': {},
     'MULTIFONCLIENT_TEST_LIVE': 'FALSE',
+    'MULTIFONCLIENT_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.MULTIFONCLIENT_TEST_LIVE
 
   if (live) {
     const client = new MultifonClientSDK({
+      apikey: env.MULTIFONCLIENT_APIKEY,
     })
 
     let idmap: any = env['MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID']

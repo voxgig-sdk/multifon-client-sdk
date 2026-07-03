@@ -117,6 +117,7 @@ func account_managementBasicSetup(extra map[string]any) *entityTestSetup {
 		"MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID": idmap,
 		"MULTIFONCLIENT_TEST_LIVE":      "FALSE",
 		"MULTIFONCLIENT_TEST_EXPLAIN":   "FALSE",
+		"MULTIFONCLIENT_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID"])
@@ -127,6 +128,7 @@ func account_managementBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["MULTIFONCLIENT_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["MULTIFONCLIENT_APIKEY"],
 			},
 			extra,
 		})

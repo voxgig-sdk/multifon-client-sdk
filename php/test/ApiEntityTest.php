@@ -80,6 +80,7 @@ function api_basic_setup($extra)
         "MULTIFONCLIENT_TEST_API_ENTID" => $idmap,
         "MULTIFONCLIENT_TEST_LIVE" => "FALSE",
         "MULTIFONCLIENT_TEST_EXPLAIN" => "FALSE",
+        "MULTIFONCLIENT_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -91,6 +92,7 @@ function api_basic_setup($extra)
     if ($env["MULTIFONCLIENT_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["MULTIFONCLIENT_APIKEY"],
             ],
             $extra ?? [],
         ]);

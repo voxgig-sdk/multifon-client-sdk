@@ -91,6 +91,7 @@ function account_management_basic_setup(extra)
     ["MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID"] = idmap,
     ["MULTIFONCLIENT_TEST_LIVE"] = "FALSE",
     ["MULTIFONCLIENT_TEST_EXPLAIN"] = "FALSE",
+    ["MULTIFONCLIENT_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function account_management_basic_setup(extra)
   if env["MULTIFONCLIENT_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["MULTIFONCLIENT_APIKEY"],
       },
       extra or {},
     })

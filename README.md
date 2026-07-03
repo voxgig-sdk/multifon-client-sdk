@@ -1,23 +1,8 @@
 # MultifonClient SDK
 
-Manage Multifon (MegaFon) phone accounts: routing, lines, status, password, balance and profile
+Multifon Client API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Multifon Client API
-
-Multifon is a Russian VoIP / multi-device calling service operated by [MegaFon](https://www.megafon.ru/). The Client API lets a subscriber programmatically manage their Multifon account at `https://sm.megafon.ru/sm/client/`, using their phone number as the login and their Multifon password.
-
-What you get from the API:
-
-- **Routing** — switch incoming calls between GSM, SIP, or combined mode.
-- **Calling lines** — set the number of concurrent SIP lines (in the 2–20 range).
-- **Status** — check whether the account is active or blocked.
-- **Password** — update the account password.
-- **Balance** — read the current account balance.
-- **Profile** — fetch the full account profile.
-
-Requests can be made as either GET (with `login` and `password` URL parameters) or POST (form data). The service is HTTP-based, returns simple XML responses, and is intended for use by the account owner — there is no separate API key or OAuth flow.
 
 ## Try it
 
@@ -51,27 +36,31 @@ gem install multifon-client-sdk
 luarocks install multifon-client-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MultifonClientSDK } from 'multifon-client'
 
-const client = new MultifonClientSDK({})
+const client = new MultifonClientSDK({
+  apikey: process.env.MULTIFON-CLIENT_APIKEY,
+})
 
+// Load accountmanagement data
+const accountmanagement = await client.AccountManagement().load({})
+console.log(accountmanagement.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **AccountManagement** | Operations on the subscriber's own Multifon account — routing, calling lines, status, password, balance and profile — under `https://sm.megafon.ru/sm/client/`. | `/api` |
-| **Api** | Generic catch-all grouping for the Multifon Client HTTP endpoints exposed at `sm.megafon.ru/sm/client/`. | `/api` |
+| **AccountManagement** |  | `/api` |
+| **Api** |  | `/api` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,15 +101,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from multifonclient_sdk import MultifonClientSDK
 
-client = MultifonClientSDK({})
+client = MultifonClientSDK({
+    "apikey": os.environ.get("MULTIFON-CLIENT_APIKEY"),
+})
 
 
 # Load a specific accountmanagement
-accountmanagement, err = client.AccountManagement(None).load(
-    {"id": "example_id"}, None
-)
+accountmanagement, err = client.AccountManagement().load({"id": "example_id"})
+print(accountmanagement)
 ```
 
 ### PHP
@@ -129,13 +120,14 @@ accountmanagement, err = client.AccountManagement(None).load(
 <?php
 require_once 'multifonclient_sdk.php';
 
-$client = new MultifonClientSDK([]);
+$client = new MultifonClientSDK([
+    "apikey" => getenv("MULTIFON-CLIENT_APIKEY"),
+]);
 
 
 // Load a specific accountmanagement
-[$accountmanagement, $err] = $client->AccountManagement(null)->load(
-    ["id" => "example_id"], null
-);
+[$accountmanagement, $err] = $client->AccountManagement()->load(["id" => "example_id"]);
+print_r($accountmanagement);
 ```
 
 ### Golang
@@ -143,8 +135,13 @@ $client = new MultifonClientSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/multifon-client-sdk/go"
 
-client := sdk.NewMultifonClientSDK(map[string]any{})
+client := sdk.NewMultifonClientSDK(map[string]any{
+    "apikey": os.Getenv("MULTIFON-CLIENT_APIKEY"),
+})
 
+// Load accountmanagement data
+accountmanagement, err := client.AccountManagement(nil).Load(map[string]any{}, nil)
+fmt.Println(accountmanagement)
 ```
 
 ### Ruby
@@ -152,13 +149,14 @@ client := sdk.NewMultifonClientSDK(map[string]any{})
 ```ruby
 require_relative "MultifonClient_sdk"
 
-client = MultifonClientSDK.new({})
+client = MultifonClientSDK.new({
+  "apikey" => ENV["MULTIFON-CLIENT_APIKEY"],
+})
 
 
 # Load a specific accountmanagement
-accountmanagement, err = client.AccountManagement(nil).load(
-  { "id" => "example_id" }, nil
-)
+accountmanagement, err = client.AccountManagement().load({ "id" => "example_id" })
+puts accountmanagement
 ```
 
 ### Lua
@@ -166,13 +164,14 @@ accountmanagement, err = client.AccountManagement(nil).load(
 ```lua
 local sdk = require("multifon-client_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("MULTIFON-CLIENT_APIKEY"),
+})
 
 
 -- Load a specific accountmanagement
-local accountmanagement, err = client:AccountManagement(nil):load(
-  { id = "example_id" }, nil
-)
+local accountmanagement, err = client:AccountManagement():load({ id = "example_id" })
+print(accountmanagement)
 ```
 
 ## Unit testing in offline mode
@@ -191,25 +190,21 @@ const result = await client.AccountManagement().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MultifonClientSDK.test(None, None)
-result, err = client.AccountManagement(None).load(
-    {"id": "test01"}, None
-)
+client = MultifonClientSDK.test()
+result, err = client.AccountManagement().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MultifonClientSDK::test(null, null);
-[$result, $err] = $client->AccountManagement(null)->load(
-    ["id" => "test01"], null
-);
+$client = MultifonClientSDK::test();
+[$result, $err] = $client->AccountManagement()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.AccountManagement(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -218,19 +213,15 @@ result, err := client.AccountManagement(nil).Load(
 ### Ruby
 
 ```ruby
-client = MultifonClientSDK.test(nil, nil)
-result, err = client.AccountManagement(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MultifonClientSDK.test
+result, err = client.AccountManagement().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:AccountManagement(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:AccountManagement():load({ id = "test01" })
 ```
 
 ## How it works
@@ -334,11 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Multifon Client API
-
-- Upstream: [https://sm.megafon.ru](https://sm.megafon.ru)
-- API docs: [https://sm.megafon.ru/sm/client/](https://sm.megafon.ru/sm/client/)
 
 ---
 
