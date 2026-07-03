@@ -10,7 +10,7 @@ The Lua SDK for the MultifonClient API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install multifon-client-sdk
+luarocks install voxgig-sdk-multifon-client
 ```
 
 If the module is not yet published, add the source directory to

@@ -10,13 +10,13 @@ The Ruby SDK for the MultifonClient API — an entity-oriented client using idio
 
 ## Install
 ```bash
-gem install multifon-client-sdk
+gem install voxgig-sdk-multifon-client
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "multifon-client-sdk"
+gem "voxgig-sdk-multifon-client"
 ```
 
 Then run:

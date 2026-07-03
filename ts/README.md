@@ -10,7 +10,7 @@ The TypeScript SDK for the MultifonClient API — a type-safe, entity-oriented c
 
 ## Install
 ```bash
-npm install multifon-client
+npm install @voxgig-sdk/multifon-client
 ```
 ## Tutorial: your first API call
 

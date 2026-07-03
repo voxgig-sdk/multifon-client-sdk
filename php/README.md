@@ -10,7 +10,7 @@ The PHP SDK for the MultifonClient API — an entity-oriented client using PHP c
 
 ## Install
 ```bash
-composer require voxgig/multifon-client-sdk
+composer require voxgig-sdk/multifon-client
 ```
 
 

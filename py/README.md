@@ -10,7 +10,7 @@ The Python SDK for the MultifonClient API — an entity-oriented client followin
 
 ## Install
 ```bash
-pip install multifon-client-sdk
+pip install voxgig-sdk-multifon-client
 ```
 
 Or install from source:
