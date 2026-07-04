@@ -91,7 +91,7 @@ same parameters as `direct()`. Raises on error.
 ## AccountManagementEntity
 
 ```ruby
-account_management = client.account_management
+account_management = client.AccountManagement
 ```
 
 ### Operations
@@ -101,7 +101,7 @@ account_management = client.account_management
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.account_management.load({ "id" => "account_management_id" })
+result = client.AccountManagement.load({ "id" => "account_management_id" })
 ```
 
 ### Common Methods
@@ -137,7 +137,7 @@ Return the entity name.
 ## ApiEntity
 
 ```ruby
-api = client.api
+api = client.Api
 ```
 
 ### Fields
@@ -154,7 +154,7 @@ api = client.api
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.api.create({
+result = client.Api.create({
 })
 ```
 

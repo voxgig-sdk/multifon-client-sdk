@@ -35,9 +35,10 @@ $client = new MultifonClientSDK([
 
 ```php
 try {
-    $result = $client->accountmanagement()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare AccountManagement record (throws on error).
+    $accountmanagement = $client->AccountManagement()->load(["id" => "example_id"]);
+    print_r($accountmanagement);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = MultifonClientSDK::test();
+$client = MultifonClientSDK::test([
+    "entity" => ["accountmanagement" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->accountmanagement()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$accountmanagement = $client->AccountManagement()->load(["id" => "test01"]);
+print_r($accountmanagement);
 ```
 
 ### Use a custom fetch function
@@ -170,8 +175,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `AccountManagement` | `($data): AccountManagementEntity` | Create a AccountManagement entity instance. |
-| `Api` | `($data): ApiEntity` | Create a Api entity instance. |
+| `AccountManagement` | `($data): AccountManagementEntity` | Create an AccountManagement entity instance. |
+| `Api` | `($data): ApiEntity` | Create an Api entity instance. |
 
 ### Entity interface
 
@@ -238,7 +243,7 @@ API path: `/api`
 
 ### AccountManagement
 
-Create an instance: `const account_management = client.account_management`
+Create an instance: `$account_management = $client->AccountManagement();`
 
 #### Operations
 
@@ -248,14 +253,15 @@ Create an instance: `const account_management = client.account_management`
 
 #### Example: Load
 
-```ts
-const account_management = await client.account_management.load({ id: 'account_management_id' })
+```php
+// load() returns the bare AccountManagement record (throws on error).
+$account_management = $client->AccountManagement()->load(["id" => "account_management_id"]);
 ```
 
 
 ### Api
 
-Create an instance: `const api = client.api`
+Create an instance: `$api = $client->Api();`
 
 #### Operations
 
@@ -272,9 +278,9 @@ Create an instance: `const api = client.api`
 
 #### Example: Create
 
-```ts
-const api = await client.api.create({
-})
+```php
+$api = $client->Api()->create([
+]);
 ```
 
 
@@ -349,7 +355,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$accountmanagement = $client->accountmanagement();
+$accountmanagement = $client->AccountManagement();
 $accountmanagement->load(["id" => "example_id"]);
 
 // $accountmanagement->dataGet() now returns the loaded accountmanagement data

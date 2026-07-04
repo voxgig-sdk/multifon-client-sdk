@@ -85,7 +85,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## AccountManagementEntity
 
 ```python
-account_management = client.account_management
+account_management = client.AccountManagement()
 ```
 
 ### Operations
@@ -95,7 +95,7 @@ account_management = client.account_management
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.account_management.load({"id": "account_management_id"})
+result = client.AccountManagement().load({"id": "account_management_id"})
 ```
 
 ### Common Methods
@@ -130,7 +130,7 @@ Return the entity name.
 ## ApiEntity
 
 ```python
-api = client.api
+api = client.Api()
 ```
 
 ### Fields
@@ -147,7 +147,7 @@ api = client.api
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.api.create({
+result = client.Api().create({
 })
 ```
 

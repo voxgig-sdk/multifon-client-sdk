@@ -208,26 +208,14 @@ class MultifonClientSDK
   end
 
 
-  # Idiomatic facade: client.account_management.list / client.account_management.load({ "id" => ... })
-  def account_management
-    require_relative 'entity/account_management_entity'
-    @account_management ||= AccountManagementEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.account_management instead.
+  # Canonical facade: client.AccountManagement.list / client.AccountManagement.load({ "id" => ... })
   def AccountManagement(data = nil)
     require_relative 'entity/account_management_entity'
     AccountManagementEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.api.list / client.api.load({ "id" => ... })
-  def api
-    require_relative 'entity/api_entity'
-    @api ||= ApiEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.api instead.
+  # Canonical facade: client.Api.list / client.Api.load({ "id" => ... })
   def Api(data = nil)
     require_relative 'entity/api_entity'
     ApiEntity.new(self, data)

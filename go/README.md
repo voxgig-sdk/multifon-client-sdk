@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/multifon-client-sdk/go=../multifon-cl
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,31 +43,20 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/multifon-client-sdk/go"
-    "github.com/voxgig-sdk/multifon-client-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewMultifonClientSDK(map[string]any{
         "apikey": os.Getenv("MULTIFON_CLIENT_APIKEY"),
     })
-```
 
-### 3. Load an accountmanagement
-
-```go
-    result, err = client.AccountManagement(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single accountmanagement — the value is the loaded record.
+    accountmanagement, err := client.AccountManagement(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(accountmanagement)
 }
 ```
 
@@ -113,10 +107,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.AccountManagement(nil).Load(
+accountmanagement, err := client.AccountManagement(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(accountmanagement) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -195,8 +192,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `AccountManagement` | `(data map[string]any) MultifonClientEntity` | Create a AccountManagement entity instance. |
-| `Api` | `(data map[string]any) MultifonClientEntity` | Create a Api entity instance. |
+| `AccountManagement` | `(data map[string]any) MultifonClientEntity` | Create an AccountManagement entity instance. |
+| `Api` | `(data map[string]any) MultifonClientEntity` | Create an Api entity instance. |
 
 ### Entity interface (MultifonClientEntity)
 
@@ -216,17 +213,24 @@ All entities implement the `MultifonClientEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    accountmanagement, err := client.AccountManagement(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // accountmanagement is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -268,7 +272,11 @@ Create an instance: `account_management := client.AccountManagement(nil)`
 #### Example: Load
 
 ```go
-result, err := client.AccountManagement(nil).Load(map[string]any{"id": "account_management_id"}, nil)
+account_management, err := client.AccountManagement(nil).Load(map[string]any{"id": "account_management_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(account_management) // the loaded record
 ```
 
 

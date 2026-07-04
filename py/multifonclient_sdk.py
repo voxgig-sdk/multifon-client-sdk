@@ -220,41 +220,21 @@ class MultifonClientSDK:
         }
 
 
-    @property
-    def account_management(self):
-        """Idiomatic facade: client.account_management.list() / client.account_management.load({"id": ...})."""
-        from entity.account_management_entity import AccountManagementEntity
-        cached = getattr(self, "_account_management", None)
-        if cached is None:
-            cached = AccountManagementEntity(self, None)
-            self._account_management = cached
-        return cached
-
-    def AccountManagement(self, data=None):
-        # Deprecated: use client.account_management instead.
+    def AccountManagement(self, data=None) -> "AccountManagementEntity":
+        """Entity factory: client.AccountManagement().list({}) / client.AccountManagement().load({"id": ...})."""
         from entity.account_management_entity import AccountManagementEntity
         return AccountManagementEntity(self, data)
 
 
-    @property
-    def api(self):
-        """Idiomatic facade: client.api.list() / client.api.load({"id": ...})."""
-        from entity.api_entity import ApiEntity
-        cached = getattr(self, "_api", None)
-        if cached is None:
-            cached = ApiEntity(self, None)
-            self._api = cached
-        return cached
-
-    def Api(self, data=None):
-        # Deprecated: use client.api instead.
+    def Api(self, data=None) -> "ApiEntity":
+        """Entity factory: client.Api().list({}) / client.Api().load({"id": ...})."""
         from entity.api_entity import ApiEntity
         return ApiEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "MultifonClientSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class MultifonClientSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.account_management_entity import AccountManagementEntity
+    from entity.api_entity import ApiEntity

@@ -34,8 +34,9 @@ client = MultifonClientSDK.new({
 
 ```ruby
 begin
-  result = client.accountmanagement.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare AccountManagement record (raises on error).
+  accountmanagement = client.AccountManagement.load({ "id" => "example_id" })
+  puts accountmanagement
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MultifonClientSDK.test
+client = MultifonClientSDK.test({
+  "entity" => { "accountmanagement" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.accountmanagement.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+accountmanagement = client.AccountManagement.load({ "id" => "test01" })
+puts accountmanagement
 ```
 
 ### Use a custom fetch function
@@ -166,8 +171,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `AccountManagement` | `(data) -> AccountManagementEntity` | Create a AccountManagement entity instance. |
-| `Api` | `(data) -> ApiEntity` | Create a Api entity instance. |
+| `AccountManagement` | `(data) -> AccountManagementEntity` | Create an AccountManagement entity instance. |
+| `Api` | `(data) -> ApiEntity` | Create an Api entity instance. |
 
 ### Entity interface
 
@@ -233,7 +238,7 @@ API path: `/api`
 
 ### AccountManagement
 
-Create an instance: `const account_management = client.account_management`
+Create an instance: `account_management = client.AccountManagement`
 
 #### Operations
 
@@ -243,14 +248,15 @@ Create an instance: `const account_management = client.account_management`
 
 #### Example: Load
 
-```ts
-const account_management = await client.account_management.load({ id: 'account_management_id' })
+```ruby
+# load returns the bare AccountManagement record (raises on error).
+account_management = client.AccountManagement.load({ "id" => "account_management_id" })
 ```
 
 
 ### Api
 
-Create an instance: `const api = client.api`
+Create an instance: `api = client.Api`
 
 #### Operations
 
@@ -267,8 +273,8 @@ Create an instance: `const api = client.api`
 
 #### Example: Create
 
-```ts
-const api = await client.api.create({
+```ruby
+api = client.Api.create({
 })
 ```
 
@@ -344,7 +350,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-accountmanagement = client.accountmanagement
+accountmanagement = client.AccountManagement
 accountmanagement.load({ "id" => "example_id" })
 
 # accountmanagement.data_get now returns the loaded accountmanagement data

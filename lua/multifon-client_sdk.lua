@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:account_management():list() / client:account_management():load({ id = ... })
-function MultifonClientSDK:account_management(data)
+-- Idiomatic facade: client:AccountManagement():list() / client:AccountManagement():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MultifonClientSDK:AccountManagement(data)
   local EntityMod = require("entity.account_management_entity")
   if data == nil then
     if self._account_management == nil then
@@ -256,15 +257,10 @@ function MultifonClientSDK:account_management(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:account_management() instead.
-function MultifonClientSDK:AccountManagement(data)
-  local EntityMod = require("entity.account_management_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:api():list() / client:api():load({ id = ... })
-function MultifonClientSDK:api(data)
+-- Idiomatic facade: client:Api():list() / client:Api():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MultifonClientSDK:Api(data)
   local EntityMod = require("entity.api_entity")
   if data == nil then
     if self._api == nil then
@@ -272,12 +268,6 @@ function MultifonClientSDK:api(data)
     end
     return self._api
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:api() instead.
-function MultifonClientSDK:Api(data)
-  local EntityMod = require("entity.api_entity")
   return EntityMod.new(self, data)
 end
 

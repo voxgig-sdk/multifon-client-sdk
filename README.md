@@ -28,9 +28,9 @@ const client = new MultifonClientSDK({
   apikey: process.env.MULTIFON_CLIENT_APIKEY,
 })
 
-// Load accountmanagement data
-const accountmanagement = await client.accountmanagement.load({})
-console.log(accountmanagement.data)
+// Load accountmanagement data (returns a AccountManagement)
+const accountmanagement = await client.AccountManagement().load()
+console.log(accountmanagement)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -90,8 +90,8 @@ client = MultifonClientSDK({
 })
 
 
-# Load a specific accountmanagement
-accountmanagement = client.accountmanagement.load({"id": "example_id"})
+# Load a specific accountmanagement (returns the record, raises on error)
+accountmanagement = client.AccountManagement().load({"id": "example_id"})
 print(accountmanagement)
 ```
 
@@ -106,8 +106,8 @@ $client = new MultifonClientSDK([
 ]);
 
 
-// Load a specific accountmanagement
-$accountmanagement = $client->accountmanagement()->load(["id" => "example_id"]);
+// Load a specific accountmanagement (returns the bare record; throws on error)
+$accountmanagement = $client->AccountManagement()->load(["id" => "example_id"]);
 print_r($accountmanagement);
 ```
 
@@ -135,8 +135,8 @@ client = MultifonClientSDK.new({
 })
 
 
-# Load a specific accountmanagement
-accountmanagement = client.accountmanagement.load({ "id" => "example_id" })
+# Load a specific accountmanagement (returns the bare record; raises on error)
+accountmanagement = client.AccountManagement.load({ "id" => "example_id" })
 puts accountmanagement
 ```
 
@@ -151,7 +151,7 @@ local client = sdk.new({
 
 
 -- Load a specific accountmanagement
-local accountmanagement, err = client:accountmanagement():load({ id = "example_id" })
+local accountmanagement, err = client:AccountManagement():load({ id = "example_id" })
 print(accountmanagement)
 ```
 
@@ -164,22 +164,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MultifonClientSDK.test()
-const result = await client.accountmanagement.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const accountmanagement = await client.AccountManagement().load({ id: 'test01' })
+// accountmanagement is a bare AccountManagement populated with mock data
+console.log(accountmanagement)
 ```
 
 ### Python
 
 ```python
 client = MultifonClientSDK.test()
-result = client.accountmanagement.load({"id": "test01"})
+accountmanagement = client.AccountManagement().load({"id": "test01"})
+print(accountmanagement)
 ```
 
 ### PHP
 
 ```php
-$client = MultifonClientSDK::test();
-$result = $client->accountmanagement()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = MultifonClientSDK::test([
+    "entity" => ["accountmanagement" => ["test01" => ["id" => "test01"]]],
+]);
+$accountmanagement = $client->AccountManagement()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -194,15 +199,18 @@ result, err := client.AccountManagement(nil).Load(
 ### Ruby
 
 ```ruby
-client = MultifonClientSDK.test
-result = client.accountmanagement.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = MultifonClientSDK.test({
+  "entity" => { "accountmanagement" => { "test01" => { "id" => "test01" } } },
+})
+accountmanagement = client.AccountManagement.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:accountmanagement():load({ id = "test01" })
+local result, err = client:AccountManagement():load({ id = "test01" })
 ```
 
 ## How it works
@@ -250,6 +258,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

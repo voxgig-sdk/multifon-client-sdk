@@ -233,10 +233,10 @@ class MultifonClientSDK
 
     private $_account_management = null;
 
-    // Idiomatic facade: $client->account_management()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias AccountManagement() (PHP method
-    // names are case-insensitive).
-    public function account_management($data = null)
+    // Canonical facade: $client->AccountManagement()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->account_management()
+    // resolves here too.
+    public function AccountManagement($data = null)
     {
         require_once __DIR__ . '/entity/account_management_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class MultifonClientSDK
 
     private $_api = null;
 
-    // Idiomatic facade: $client->api()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Api() (PHP method
-    // names are case-insensitive).
-    public function api($data = null)
+    // Canonical facade: $client->Api()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->api()
+    // resolves here too.
+    public function Api($data = null)
     {
         require_once __DIR__ . '/entity/api_entity.php';
         if ($data === null) {
