@@ -3,6 +3,8 @@
 import { AccountManagementEntity } from './entity/AccountManagementEntity'
 import { ApiEntity } from './entity/ApiEntity'
 
+export type * from './MultifonClientTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class MultifonClientSDK {
 
 
 
+  _account_management?: AccountManagementEntity
+
+  // Idiomatic facade: `client.account_management.list()` / `client.account_management.load({ id })`.
+  get account_management(): AccountManagementEntity {
+    return (this._account_management ??= new AccountManagementEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.account_management` instead. */
   AccountManagement(data?: any) {
     const self = this
     return new AccountManagementEntity(self,data)
   }
 
 
+  _api?: ApiEntity
+
+  // Idiomatic facade: `client.api.list()` / `client.api.load({ id })`.
+  get api(): ApiEntity {
+    return (this._api ??= new ApiEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.api` instead. */
   Api(data?: any) {
     const self = this
     return new ApiEntity(self,data)

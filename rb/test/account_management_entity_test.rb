@@ -42,8 +42,7 @@ class AccountManagementEntityTest < Minitest::Test
     # LOAD
     account_management_ref01_ent = client.AccountManagement(nil)
     account_management_ref01_match_dt0 = {}
-    account_management_ref01_data_dt0_loaded, err = account_management_ref01_ent.load(account_management_ref01_match_dt0, nil)
-    assert_nil err
+    account_management_ref01_data_dt0_loaded = account_management_ref01_ent.load(account_management_ref01_match_dt0, nil)
     assert !account_management_ref01_data_dt0_loaded.nil?
 
   end

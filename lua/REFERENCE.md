@@ -88,7 +88,7 @@ same parameters as `direct()`.
 ## AccountManagementEntity
 
 ```lua
-local account_management = client:AccountManagement(nil)
+local account_management = client:account_management(nil)
 ```
 
 ### Operations
@@ -98,7 +98,7 @@ local account_management = client:AccountManagement(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:AccountManagement():load({ id = "account_management_id" })
+local result, err = client:account_management():load({ id = "account_management_id" })
 ```
 
 ### Common Methods
@@ -134,7 +134,7 @@ Return the entity name.
 ## ApiEntity
 
 ```lua
-local api = client:Api(nil)
+local api = client:api(nil)
 ```
 
 ### Fields
@@ -151,7 +151,7 @@ local api = client:Api(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Api():create({
+local result, err = client:api():create({
 })
 ```
 

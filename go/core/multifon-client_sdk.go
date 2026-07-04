@@ -245,11 +245,17 @@ func (sdk *MultifonClientSDK) Direct(fetchargs map[string]any) (map[string]any, 
 }
 
 
+// AccountManagement returns a AccountManagement entity bound to this client.
+// Idiomatic usage: client.AccountManagement(nil).List(nil, nil) or
+// client.AccountManagement(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MultifonClientSDK) AccountManagement(data map[string]any) MultifonClientEntity {
 	return NewAccountManagementEntityFunc(sdk, data)
 }
 
 
+// Api returns a Api entity bound to this client.
+// Idiomatic usage: client.Api(nil).List(nil, nil) or
+// client.Api(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MultifonClientSDK) Api(data map[string]any) MultifonClientEntity {
 	return NewApiEntityFunc(sdk, data)
 }

@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata ApiCreateData
+---@param ctrl? table
+---@return Api
+---@return string? err
 function ApiEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

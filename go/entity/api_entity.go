@@ -85,6 +85,27 @@ func (e *ApiEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Api; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *ApiEntity) DataTyped(data ...Api) Api {
+	if len(data) > 0 {
+		return typedFrom[Api](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Api](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Api (all fields
+// optional at the wire level).
+func (e *ApiEntity) MatchTyped(match ...Api) Api {
+	if len(match) > 0 {
+		return typedFrom[Api](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Api](e.Match())
+}
+
 func (e *ApiEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -116,6 +137,17 @@ func (e *ApiEntity) Create(reqdata map[string]any, ctrl map[string]any) (any, er
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// ApiCreateData and returns an Api. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *ApiEntity) CreateTyped(reqdata ApiCreateData, ctrl map[string]any) (Api, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return Api{}, err
+	}
+	return typedFrom[Api](res), nil
 }
 
 

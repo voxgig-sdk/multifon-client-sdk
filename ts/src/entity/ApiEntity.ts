@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Api,
+  ApiCreateData,
+} from '../MultifonClientTypes'
 
 // TODO: needs Entity superclass
-class ApiEntity extends MultifonClientEntityBase {
+class ApiEntity extends MultifonClientEntityBase<Api> {
 
   constructor(client: MultifonClientSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class ApiEntity extends MultifonClientEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: ApiCreateData, ctrl?: Control): Promise<Api> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class ApiEntity extends MultifonClientEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Api> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

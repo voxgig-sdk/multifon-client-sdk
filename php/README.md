@@ -9,9 +9,10 @@ The PHP SDK for the MultifonClient API — an entity-oriented client using PHP c
 
 
 ## Install
-```bash
-composer require voxgig-sdk/multifon-client
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/multifon-client-sdk/releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,16 +27,19 @@ loading a specific record.
 require_once 'multifonclient_sdk.php';
 
 $client = new MultifonClientSDK([
-    "apikey" => getenv("MULTIFON-CLIENT_APIKEY"),
+    "apikey" => getenv("MULTIFON_CLIENT_APIKEY"),
 ]);
 ```
 
-### 3. Load a accountmanagement
+### 3. Load an accountmanagement
 
 ```php
-[$result, $err] = $client->AccountManagement()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->accountmanagement()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +50,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = MultifonClientSDK::test();
 
-[$result, $err] = $client->MultifonClient()->load(["id" => "test01"]);
+$result = $client->accountmanagement()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +122,8 @@ $client = new MultifonClientSDK([
 Create a `.env.local` file at the project root:
 
 ```
-MULTIFON-CLIENT_TEST_LIVE=TRUE
-MULTIFON-CLIENT_APIKEY=<your-key>
+MULTIFON_CLIENT_TEST_LIVE=TRUE
+MULTIFON_CLIENT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -186,8 +193,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -227,7 +238,7 @@ API path: `/api`
 
 ### AccountManagement
 
-Create an instance: `const account_management = client.AccountManagement()`
+Create an instance: `const account_management = client.account_management`
 
 #### Operations
 
@@ -238,13 +249,13 @@ Create an instance: `const account_management = client.AccountManagement()`
 #### Example: Load
 
 ```ts
-const account_management = await client.AccountManagement().load({ id: 'account_management_id' })
+const account_management = await client.account_management.load({ id: 'account_management_id' })
 ```
 
 
 ### Api
 
-Create an instance: `const api = client.Api()`
+Create an instance: `const api = client.api`
 
 #### Operations
 
@@ -262,7 +273,7 @@ Create an instance: `const api = client.Api()`
 #### Example: Create
 
 ```ts
-const api = await client.Api().create({
+const api = await client.api.create({
 })
 ```
 
@@ -338,11 +349,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$accountmanagement = $client->accountmanagement();
+$accountmanagement->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $accountmanagement->dataGet() now returns the loaded accountmanagement data
+// $accountmanagement->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

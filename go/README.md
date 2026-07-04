@@ -10,14 +10,18 @@ The Golang SDK for the MultifonClient API — an entity-oriented client using st
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/multifon-client-sdk/go
+go get github.com/voxgig-sdk/multifon-client-sdk/go@latest
 ```
 
-If the module is not yet published to a registry, use a `replace` directive
-in your `go.mod` to point to a local checkout:
+The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
+release tag — see [Releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases) for the available versions.
+
+To vendor from a local checkout instead, clone this repo alongside your
+project and add a `replace` directive pointing at the checked-out
+`go/` directory:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/multifon-client-sdk/go=../path/to/github.com/voxgig-sdk/multifon-client-sdk/go
+go mod edit -replace github.com/voxgig-sdk/multifon-client-sdk/go=../multifon-client-sdk/go
 ```
 
 
@@ -41,11 +45,11 @@ import (
 
 func main() {
     client := sdk.NewMultifonClientSDK(map[string]any{
-        "apikey": os.Getenv("MULTIFON-CLIENT_APIKEY"),
+        "apikey": os.Getenv("MULTIFON_CLIENT_APIKEY"),
     })
 ```
 
-### 3. Load a accountmanagement
+### 3. Load an accountmanagement
 
 ```go
     result, err = client.AccountManagement(nil).Load(
@@ -109,7 +113,7 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Planet(nil).Load(
+result, err := client.AccountManagement(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 // result contains mock response data
@@ -144,8 +148,8 @@ client := sdk.NewMultifonClientSDK(map[string]any{
 Create a `.env.local` file at the project root:
 
 ```
-MULTIFON-CLIENT_TEST_LIVE=TRUE
-MULTIFON-CLIENT_APIKEY=<your-key>
+MULTIFON_CLIENT_TEST_LIVE=TRUE
+MULTIFON_CLIENT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -362,11 +366,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-moon := client.Moon(nil)
-moon.Load(map[string]any{"planet_id": "earth", "id": "luna"}, nil)
+accountmanagement := client.AccountManagement(nil)
+accountmanagement.Load(map[string]any{"id": "example_id"}, nil)
 
-// moon.Data() now returns the loaded moon data
-// moon.Match() returns the last match criteria
+// accountmanagement.Data() now returns the loaded accountmanagement data
+// accountmanagement.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

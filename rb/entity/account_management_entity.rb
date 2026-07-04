@@ -45,6 +45,7 @@ class AccountManagementEntity
     end
   end
 
+  # @return [AccountManagement, Hash] the current AccountManagement data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class AccountManagementEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of AccountManagement fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single AccountManagement.
+  #
+  # @param reqmatch [AccountManagementLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [AccountManagement, Hash] the loaded AccountManagement; raises MultifonClientError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

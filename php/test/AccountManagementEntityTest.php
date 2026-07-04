@@ -49,8 +49,7 @@ class AccountManagementEntityTest extends TestCase
         // LOAD
         $account_management_ref01_ent = $client->AccountManagement(null);
         $account_management_ref01_match_dt0 = [];
-        [$account_management_ref01_data_dt0_loaded, $err] = $account_management_ref01_ent->load($account_management_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $account_management_ref01_data_dt0_loaded = $account_management_ref01_ent->load($account_management_ref01_match_dt0, null);
         $this->assertNotNull($account_management_ref01_data_dt0_loaded);
 
     }

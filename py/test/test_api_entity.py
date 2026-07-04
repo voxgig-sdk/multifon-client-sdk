@@ -44,9 +44,7 @@ class TestApiEntity:
         api_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.api"), "api_ref01"))
 
-        api_ref01_data_result, err = api_ref01_ent.create(api_ref01_data, None)
-        assert err is None
-        api_ref01_data = helpers.to_map(api_ref01_data_result)
+        api_ref01_data = helpers.to_map(api_ref01_ent.create(api_ref01_data, None))
         assert api_ref01_data is not None
 
 

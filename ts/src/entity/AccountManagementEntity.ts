@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  AccountManagement,
+  AccountManagementLoadMatch,
+} from '../MultifonClientTypes'
 
 // TODO: needs Entity superclass
-class AccountManagementEntity extends MultifonClientEntityBase {
+class AccountManagementEntity extends MultifonClientEntityBase<AccountManagement> {
 
   constructor(client: MultifonClientSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class AccountManagementEntity extends MultifonClientEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: AccountManagementLoadMatch, ctrl?: Control): Promise<AccountManagement> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class AccountManagementEntity extends MultifonClientEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<AccountManagement> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

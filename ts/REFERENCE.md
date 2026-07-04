@@ -122,7 +122,7 @@ Alias for `MultifonClientSDK.test()`.
 ## AccountManagementEntity
 
 ```ts
-const account_management = client.AccountManagement()
+const account_management = client.account_management
 ```
 
 ### Operations
@@ -132,7 +132,7 @@ const account_management = client.AccountManagement()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.AccountManagement().load({ id: 'account_management_id' })
+const result = await client.account_management.load({ id: 'account_management_id' })
 ```
 
 ### Common Methods
@@ -166,7 +166,7 @@ Return a copy of the entity options.
 ## ApiEntity
 
 ```ts
-const api = client.Api()
+const api = client.api
 ```
 
 ### Fields
@@ -183,7 +183,7 @@ const api = client.Api()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Api().create({
+const result = await client.api.create({
 })
 ```
 

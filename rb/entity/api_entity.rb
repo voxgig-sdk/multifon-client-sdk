@@ -45,6 +45,7 @@ class ApiEntity
     end
   end
 
+  # @return [Api, Hash] the current Api data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ApiEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Api fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class ApiEntity
   
 
   
+  # Create a new Api.
+  #
+  # @param reqdata [ApiCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Api, Hash] the created Api; raises MultifonClientError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -9,9 +9,12 @@ The TypeScript SDK for the MultifonClient API — a type-safe, entity-oriented c
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/multifon-client
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/multifon-client-sdk/releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MultifonClientSDK } from 'multifon-client'
+import { MultifonClientSDK } from '@voxgig-sdk/multifon-client'
 
 const client = new MultifonClientSDK({
-  apikey: process.env.MULTIFON-CLIENT_APIKEY,
+  apikey: process.env.MULTIFON_CLIENT_APIKEY,
 })
 ```
 
-### 3. Load a accountmanagement
+### 3. Load an accountmanagement
 
 ```ts
-const result = await client.AccountManagement().load({ id: 'example_id' })
+const result = await client.accountmanagement.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MultifonClientSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.accountmanagement.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.accountmanagement
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new MultifonClientSDK({
 Create a `.env.local` file at the project root:
 
 ```
-MULTIFON-CLIENT_TEST_LIVE=TRUE
-MULTIFON-CLIENT_APIKEY=<your-key>
+MULTIFON_CLIENT_TEST_LIVE=TRUE
+MULTIFON_CLIENT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -277,7 +280,7 @@ API path: `/api`
 
 ### AccountManagement
 
-Create an instance: `const account_management = client.AccountManagement()`
+Create an instance: `const account_management = client.account_management`
 
 #### Operations
 
@@ -288,13 +291,13 @@ Create an instance: `const account_management = client.AccountManagement()`
 #### Example: Load
 
 ```ts
-const account_management = await client.AccountManagement().load({ id: 'account_management_id' })
+const account_management = await client.account_management.load({ id: 'account_management_id' })
 ```
 
 
 ### Api
 
-Create an instance: `const api = client.Api()`
+Create an instance: `const api = client.api`
 
 #### Operations
 
@@ -312,7 +315,7 @@ Create an instance: `const api = client.Api()`
 #### Example: Create
 
 ```ts
-const api = await client.Api().create({
+const api = await client.api.create({
 })
 ```
 
@@ -374,7 +377,7 @@ multifon-client/
 Import the SDK from the package root:
 
 ```ts
-import { MultifonClientSDK } from 'multifon-client'
+import { MultifonClientSDK } from '@voxgig-sdk/multifon-client'
 ```
 
 ### Entity state
@@ -384,11 +387,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const accountmanagement = client.accountmanagement
+await accountmanagement.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// accountmanagement.data() now returns the loaded accountmanagement data
+// accountmanagement.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -36,8 +36,7 @@ class ApiEntityTest < Minitest::Test
     api_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.api"), "api_ref01"))
 
-    api_ref01_data_result, err = api_ref01_ent.create(api_ref01_data, nil)
-    assert_nil err
+    api_ref01_data_result = api_ref01_ent.create(api_ref01_data, nil)
     api_ref01_data = Helpers.to_map(api_ref01_data_result)
     assert !api_ref01_data.nil?
 

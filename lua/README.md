@@ -9,12 +9,9 @@ The Lua SDK for the MultifonClient API — an entity-oriented client using Lua c
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-multifon-client
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -32,14 +29,14 @@ loading a specific record.
 local sdk = require("multifon-client_sdk")
 
 local client = sdk.new({
-  apikey = os.getenv("MULTIFON-CLIENT_APIKEY"),
+  apikey = os.getenv("MULTIFON_CLIENT_APIKEY"),
 })
 ```
 
-### 3. Load a accountmanagement
+### 3. Load an accountmanagement
 
 ```lua
-local result, err = client:AccountManagement():load({ id = "example_id" })
+local result, err = client:accountmanagement():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:MultifonClient():load({ id = "test01" })
+local result, err = client:accountmanagement():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +117,8 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-MULTIFON-CLIENT_TEST_LIVE=TRUE
-MULTIFON-CLIENT_APIKEY=<your-key>
+MULTIFON_CLIENT_TEST_LIVE=TRUE
+MULTIFON_CLIENT_APIKEY=<your-key>
 ```
 
 Then run:
@@ -232,7 +229,7 @@ API path: `/api`
 
 ### AccountManagement
 
-Create an instance: `const account_management = client.AccountManagement()`
+Create an instance: `const account_management = client.account_management`
 
 #### Operations
 
@@ -243,13 +240,13 @@ Create an instance: `const account_management = client.AccountManagement()`
 #### Example: Load
 
 ```ts
-const account_management = await client.AccountManagement().load({ id: 'account_management_id' })
+const account_management = await client.account_management.load({ id: 'account_management_id' })
 ```
 
 
 ### Api
 
-Create an instance: `const api = client.Api()`
+Create an instance: `const api = client.api`
 
 #### Operations
 
@@ -267,7 +264,7 @@ Create an instance: `const api = client.Api()`
 #### Example: Create
 
 ```ts
-const api = await client.Api().create({
+const api = await client.api.create({
 })
 ```
 
@@ -343,11 +340,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local accountmanagement = client:accountmanagement()
+accountmanagement:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- accountmanagement:data_get() now returns the loaded accountmanagement data
+-- accountmanagement:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration
