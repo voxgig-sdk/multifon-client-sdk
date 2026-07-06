@@ -8,7 +8,7 @@ Complete API reference for the MultifonClient Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'multifon-client_sdk'
+require_relative 'MultifonClient_sdk'
 
 client = MultifonClientSDK.new(options)
 ```
@@ -101,7 +101,7 @@ account_management = client.AccountManagement
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.AccountManagement.load({ "id" => "account_management_id" })
+result = client.AccountManagement.load()
 ```
 
 ### Common Methods
@@ -144,8 +144,8 @@ api = client.Api
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `message` | `String` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 

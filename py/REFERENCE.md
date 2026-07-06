@@ -8,7 +8,7 @@ Complete API reference for the MultifonClient Python SDK.
 ### Constructor
 
 ```python
-from multifon-client_sdk import MultifonClientSDK
+from multifonclient_sdk import MultifonClientSDK
 
 client = MultifonClientSDK(options)
 ```
@@ -95,7 +95,7 @@ account_management = client.AccountManagement()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.AccountManagement().load({"id": "account_management_id"})
+result = client.AccountManagement().load()
 ```
 
 ### Common Methods
@@ -137,8 +137,8 @@ api = client.Api()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `message` | `str` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 

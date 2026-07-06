@@ -8,12 +8,16 @@
 export interface AccountManagement {
 }
 
-export type AccountManagementLoadMatch = Partial<AccountManagement>
+export interface AccountManagementLoadMatch {
+}
 
 export interface Api {
   message?: string
   success?: boolean
 }
 
-export type ApiCreateData = Partial<Api>
+export interface ApiCreateData {
+  message?: string
+  success?: boolean
+}
 

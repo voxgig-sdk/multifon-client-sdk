@@ -12,8 +12,7 @@ import "encoding/json"
 type AccountManagement struct {
 }
 
-// AccountManagementLoadMatch mirrors the account_management fields as an all-optional match
-// filter (Go analog of Partial<AccountManagement>).
+// AccountManagementLoadMatch is the typed request payload for AccountManagement.LoadTyped.
 type AccountManagementLoadMatch struct {
 }
 
@@ -23,8 +22,7 @@ type Api struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// ApiCreateData mirrors the api fields as an all-optional match
-// filter (Go analog of Partial<Api>).
+// ApiCreateData is the typed request payload for Api.CreateTyped.
 type ApiCreateData struct {
 	Message *string `json:"message,omitempty"`
 	Success *bool `json:"success,omitempty"`

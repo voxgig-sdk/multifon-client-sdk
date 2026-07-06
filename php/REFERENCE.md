@@ -8,7 +8,7 @@ Complete API reference for the MultifonClient PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/multifon-client_sdk.php';
+require_once __DIR__ . '/multifonclient_sdk.php';
 
 $client = new MultifonClientSDK($options);
 ```
@@ -50,11 +50,11 @@ Create a new `AccountManagementEntity` instance. Pass `null` for no initial data
 
 Create a new `ApiEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): MultifonClientUtility`
 
 Return a copy of the SDK utility object.
 
@@ -100,24 +100,24 @@ $account_management = $client->AccountManagement();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->AccountManagement()->load(["id" => "account_management_id"]);
+$result = $client->AccountManagement()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -126,7 +126,7 @@ Set the entity match criteria.
 Create a new `AccountManagementEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -143,8 +143,8 @@ $api = $client->Api();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `message` | `string` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -159,19 +159,19 @@ $result = $client->Api()->create([
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -180,7 +180,7 @@ Set the entity match criteria.
 Create a new `ApiEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

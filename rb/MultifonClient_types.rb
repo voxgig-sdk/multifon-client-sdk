@@ -12,7 +12,7 @@
 class AccountManagement
 end
 
-# Match filter for AccountManagement#load (any subset of AccountManagement fields).
+# Request payload for AccountManagement#load.
 class AccountManagementLoadMatch
 end
 
@@ -29,7 +29,7 @@ Api = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Api#create (any subset of Api fields).
+# Request payload for Api#create.
 #
 # @!attribute [rw] message
 #   @return [String, nil]

@@ -132,7 +132,7 @@ const account_management = client.AccountManagement()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.AccountManagement().load({ id: 'account_management_id' })
+const result = await client.AccountManagement().load()
 ```
 
 ### Common Methods
@@ -173,8 +173,8 @@ const api = client.Api()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `message` | `string` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 

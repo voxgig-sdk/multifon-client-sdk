@@ -15,6 +15,8 @@
 ---@field success? boolean
 
 ---@class ApiCreateData
+---@field message? string
+---@field success? boolean
 
 local M = {}
 

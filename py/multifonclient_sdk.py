@@ -221,13 +221,13 @@ class MultifonClientSDK:
 
 
     def AccountManagement(self, data=None) -> "AccountManagementEntity":
-        """Entity factory: client.AccountManagement().list({}) / client.AccountManagement().load({"id": ...})."""
+        """Entity factory: client.AccountManagement().list() / client.AccountManagement().load({"id": ...})."""
         from entity.account_management_entity import AccountManagementEntity
         return AccountManagementEntity(self, data)
 
 
     def Api(self, data=None) -> "ApiEntity":
-        """Entity factory: client.Api().list({}) / client.Api().load({"id": ...})."""
+        """Entity factory: client.Api().list() / client.Api().load({"id": ...})."""
         from entity.api_entity import ApiEntity
         return ApiEntity(self, data)
 

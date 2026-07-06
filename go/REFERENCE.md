@@ -105,7 +105,7 @@ account_management := client.AccountManagement(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.AccountManagement(nil).Load(map[string]any{"id": "account_management_id"}, nil)
+result, err := client.AccountManagement(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -142,8 +142,8 @@ api := client.Api(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `message` | `string` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 

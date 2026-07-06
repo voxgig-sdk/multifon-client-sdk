@@ -98,7 +98,7 @@ local account_management = client:AccountManagement(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:AccountManagement():load({ id = "account_management_id" })
+local result, err = client:AccountManagement():load()
 ```
 
 ### Common Methods
@@ -141,8 +141,8 @@ local api = client:Api(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `message` | `string` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 

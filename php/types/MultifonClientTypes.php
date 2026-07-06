@@ -17,7 +17,7 @@ class AccountManagement
 {
 }
 
-/** Match filter for AccountManagement#load (any subset of AccountManagement fields). */
+/** Request payload for AccountManagement#load. */
 class AccountManagementLoadMatch
 {
 }
@@ -29,7 +29,7 @@ class Api
     public ?bool $success = null;
 }
 
-/** Match filter for Api#create (any subset of Api fields). */
+/** Request payload for Api#create. */
 class ApiCreateData
 {
     public ?string $message = null;
