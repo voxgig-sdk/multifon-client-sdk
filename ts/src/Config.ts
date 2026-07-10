@@ -39,7 +39,7 @@ class Config {
     base: 'https://sm.megafon.ru',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

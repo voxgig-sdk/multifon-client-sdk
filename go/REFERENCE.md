@@ -95,7 +95,8 @@ same parameters as `Direct()`.
 ## AccountManagementEntity
 
 ```go
-account_management := client.AccountManagement(nil)
+accountManagement := client.AccountManagement(nil)
+fmt.Println(accountManagement.GetName()) // "account_management"
 ```
 
 ### Operations
@@ -106,6 +107,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.AccountManagement(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -136,6 +141,7 @@ Return the entity name.
 
 ```go
 api := client.Api(nil)
+fmt.Println(api.GetName()) // "api"
 ```
 
 ### Fields
@@ -154,6 +160,10 @@ Create a new entity with the given data.
 ```go
 result, err := client.Api(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

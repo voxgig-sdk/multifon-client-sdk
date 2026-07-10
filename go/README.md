@@ -53,12 +53,12 @@ func main() {
         "apikey": os.Getenv("MULTIFON_CLIENT_APIKEY"),
     })
 
-    // Load a single accountmanagement — the value is the loaded record.
-    accountmanagement, err := client.AccountManagement(nil).Load(nil, nil)
+    // Load a single accountManagement — the value is the loaded record.
+    accountManagement, err := client.AccountManagement(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(accountmanagement)
+    fmt.Println(accountManagement)
 }
 ```
 
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-accountmanagement, err := client.AccountManagement(nil).Load(
+accountManagement, err := client.AccountManagement(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(accountmanagement) // the returned mock data
+fmt.Println(accountManagement) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -252,9 +252,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    accountmanagement, err := client.AccountManagement(nil).Load(nil, nil)
+    accountManagement, err := client.AccountManagement(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // accountmanagement is the returned record
+    // accountManagement is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -288,7 +288,7 @@ API path: `/api`
 
 ### AccountManagement
 
-Create an instance: `account_management := client.AccountManagement(nil)`
+Create an instance: `accountManagement := client.AccountManagement(nil)`
 
 #### Operations
 
@@ -299,11 +299,11 @@ Create an instance: `account_management := client.AccountManagement(nil)`
 #### Example: Load
 
 ```go
-account_management, err := client.AccountManagement(nil).Load(nil, nil)
+accountManagement, err := client.AccountManagement(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(account_management) // the loaded record
+fmt.Println(accountManagement) // the loaded record
 ```
 
 
@@ -329,6 +329,10 @@ Create an instance: `api := client.Api(nil)`
 ```go
 result, err := client.Api(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

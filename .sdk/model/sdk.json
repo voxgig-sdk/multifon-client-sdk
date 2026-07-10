@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -292,14 +289,24 @@
           "url": "https://sm.megafon.ru"
         },
         "description": "The Multifon Client API allows users to manage their account through GET and POST methods. Users can retrieve and set routing, calling lines, status, password, balance, and profile information using specific URL parameters.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "query",
+          "name": "auth",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "Production server",
             "url": "https://sm.megafon.ru"
           }
         ],
+        "summary": "The Multifon Client API allows users to manage their account through GET and POST methods.",
         "title": "Multifon Client API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://sm.megafon.ru"
       },
       "option": {},
       "target": {
@@ -352,6 +359,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -402,6 +412,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
