@@ -1,4 +1,4 @@
--- ProjectName SDK configuration
+-- MultifonClient SDK configuration
 
 local function make_config()
   return {

@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- MultifonClient SDK exists test
 
 local sdk = require("multifon-client_sdk")
 
