@@ -57,6 +57,7 @@ module MultifonClientConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api",
                   "parts" => [
@@ -119,6 +120,7 @@ module MultifonClientConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api",
                   "parts" => [

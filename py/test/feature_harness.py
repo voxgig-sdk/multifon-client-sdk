@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MultifonClientControl
-from core.error import MultifonClientError
-from core.result import MultifonClientResult
-from core.spec import MultifonClientSpec
+from multifonclient_sdk.config import make_config
+from multifonclient_sdk.features import _make_feature
+from multifonclient_sdk.core.control import MultifonClientControl
+from multifonclient_sdk.core.error import MultifonClientError
+from multifonclient_sdk.core.result import MultifonClientResult
+from multifonclient_sdk.core.spec import MultifonClientSpec
 
 
 # True when this SDK was generated with the named feature.

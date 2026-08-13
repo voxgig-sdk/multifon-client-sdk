@@ -29,7 +29,7 @@ describe("ApiEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set MULTIFONCLIENT_TEST_API_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set MULTIFON_CLIENT_TEST_API_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -41,7 +41,7 @@ describe("ApiEntity", function()
 
     local api_ref01_data_result, err = api_ref01_ent:create(api_ref01_data, nil)
     assert.is_nil(err)
-    api_ref01_data = helpers.to_map(api_ref01_data_result)
+    api_ref01_data = helpers.to_map(type(api_ref01_data_result) == 'table' and api_ref01_data_result.data_get and api_ref01_data_result:data_get() or api_ref01_data_result)
     assert.is_not_nil(api_ref01_data)
 
   end)
@@ -79,39 +79,39 @@ function api_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("MULTIFONCLIENT_TEST_API_ENTID")
+  local entid_env_raw = os.getenv("MULTIFON_CLIENT_TEST_API_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["MULTIFONCLIENT_TEST_API_ENTID"] = idmap,
-    ["MULTIFONCLIENT_TEST_LIVE"] = "FALSE",
-    ["MULTIFONCLIENT_TEST_EXPLAIN"] = "FALSE",
-    ["MULTIFONCLIENT_APIKEY"] = "NONE",
+    ["MULTIFON_CLIENT_TEST_API_ENTID"] = idmap,
+    ["MULTIFON_CLIENT_TEST_LIVE"] = "FALSE",
+    ["MULTIFON_CLIENT_TEST_EXPLAIN"] = "FALSE",
+    ["MULTIFON_CLIENT_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["MULTIFONCLIENT_TEST_API_ENTID"])
+    env["MULTIFON_CLIENT_TEST_API_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["MULTIFONCLIENT_TEST_LIVE"] == "TRUE" then
+  if env["MULTIFON_CLIENT_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["MULTIFONCLIENT_APIKEY"],
+        apikey = env["MULTIFON_CLIENT_APIKEY"],
       },
       extra or {},
     })
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["MULTIFONCLIENT_TEST_LIVE"] == "TRUE"
+  local live = env["MULTIFON_CLIENT_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["MULTIFONCLIENT_TEST_EXPLAIN"] == "TRUE",
+    explain = env["MULTIFON_CLIENT_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

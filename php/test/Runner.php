@@ -43,8 +43,8 @@ class MultifonClientTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('MULTIFONCLIENT_TEST_LIVE');
-        $override = self::getenv('MULTIFONCLIENT_TEST_OVERRIDE');
+        $live = self::getenv('MULTIFON_CLIENT_TEST_LIVE');
+        $override = self::getenv('MULTIFON_CLIENT_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class MultifonClientTestRunner
             }
         }
 
-        $explain = self::getenv('MULTIFONCLIENT_TEST_EXPLAIN');
+        $explain = self::getenv('MULTIFON_CLIENT_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['MULTIFONCLIENT_TEST_EXPLAIN'] = $explain;
+            $m['MULTIFON_CLIENT_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

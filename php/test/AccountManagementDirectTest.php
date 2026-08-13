@@ -65,16 +65,16 @@ function account_management_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID" => [],
-        "MULTIFONCLIENT_TEST_LIVE" => "FALSE",
-        "MULTIFONCLIENT_APIKEY" => "NONE",
+        "MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID" => [],
+        "MULTIFON_CLIENT_TEST_LIVE" => "FALSE",
+        "MULTIFON_CLIENT_APIKEY" => "NONE",
     ]);
 
-    $live = $env["MULTIFONCLIENT_TEST_LIVE"] === "TRUE";
+    $live = $env["MULTIFON_CLIENT_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["MULTIFONCLIENT_APIKEY"],
+            "apikey" => $env["MULTIFON_CLIENT_APIKEY"],
         ];
         $client = new MultifonClientSDK($merged_opts);
         return [

@@ -16,11 +16,11 @@
 import pytest
 
 from multifonclient_sdk import MultifonClientSDK
-from core.error import MultifonClientError
-from core.result import MultifonClientResult
-from core.response import MultifonClientResponse
-from core.spec import MultifonClientSpec
-from feature.base_feature import MultifonClientBaseFeature
+from multifonclient_sdk.core.error import MultifonClientError
+from multifonclient_sdk.core.result import MultifonClientResult
+from multifonclient_sdk.core.response import MultifonClientResponse
+from multifonclient_sdk.core.spec import MultifonClientSpec
+from multifonclient_sdk.feature.base_feature import MultifonClientBaseFeature
 
 
 def _client():

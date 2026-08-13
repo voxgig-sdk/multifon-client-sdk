@@ -36,7 +36,7 @@ client = MultifonClientSDK.new({
 
 ```ruby
 begin
-  # load returns the bare AccountManagement record (raises on error).
+  # load returns the ENTITY — call data_get for the AccountManagement record (raises on error).
   accountmanagement = client.AccountManagement.load()
   puts accountmanagement
 rescue => err
@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = MultifonClientSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 accountmanagement = client.AccountManagement.load()
 puts accountmanagement
 ```
@@ -274,7 +275,7 @@ Create an instance: `account_management = client.AccountManagement`
 #### Example: Load
 
 ```ruby
-# load returns the bare AccountManagement record (raises on error).
+# load returns the ENTITY — call data_get for the AccountManagement record (raises on error).
 account_management = client.AccountManagement.load()
 ```
 

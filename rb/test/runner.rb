@@ -23,8 +23,8 @@ module MultifonClientTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("MULTIFONCLIENT_TEST_LIVE")
-    override = getenv("MULTIFONCLIENT_TEST_OVERRIDE")
+    live = getenv("MULTIFON_CLIENT_TEST_LIVE")
+    override = getenv("MULTIFON_CLIENT_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module MultifonClientTestRunner
       end
     end
 
-    explain = getenv("MULTIFONCLIENT_TEST_EXPLAIN")
-    m["MULTIFONCLIENT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("MULTIFON_CLIENT_TEST_EXPLAIN")
+    m["MULTIFON_CLIENT_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

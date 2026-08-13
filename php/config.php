@@ -62,6 +62,7 @@ class MultifonClientConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api',
                   'parts' => [
@@ -124,6 +125,7 @@ class MultifonClientConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/api',
                   'parts' => [

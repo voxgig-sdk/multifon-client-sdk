@@ -26,8 +26,8 @@ import {
 describe('ApiEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MULTIFONCLIENT_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MULTIFONCLIENT_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MULTIFON_CLIENT_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MULTIFON_CLIENT_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MultifonClientSDK.test()
@@ -62,7 +62,7 @@ describe('ApiEntity', async () => {
     const api_ref01_ent = client.Api()
     let api_ref01_data = setup.data.new.api['api_ref01']
 
-    api_ref01_data = await api_ref01_ent.create(api_ref01_data)
+    api_ref01_data = (await api_ref01_ent.create(api_ref01_data)).data()
     assert(null != api_ref01_data)
 
 

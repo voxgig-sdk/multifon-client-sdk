@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# MultifonClient SDK exists test
 
 import pytest
 from multifonclient_sdk import MultifonClientSDK

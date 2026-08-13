@@ -60,16 +60,16 @@ function account_management_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID"] = {},
-    ["MULTIFONCLIENT_TEST_LIVE"] = "FALSE",
-    ["MULTIFONCLIENT_APIKEY"] = "NONE",
+    ["MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID"] = {},
+    ["MULTIFON_CLIENT_TEST_LIVE"] = "FALSE",
+    ["MULTIFON_CLIENT_APIKEY"] = "NONE",
   })
 
-  local live = env["MULTIFONCLIENT_TEST_LIVE"] == "TRUE"
+  local live = env["MULTIFON_CLIENT_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["MULTIFONCLIENT_APIKEY"],
+      apikey = env["MULTIFON_CLIENT_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 const client = MultifonClientSDK.test()
 
 const accountmanagement = await client.AccountManagement().load()
-// accountmanagement is a bare entity populated with mock response data
+// accountmanagement is the entity, populated with mock response data
+// — call accountmanagement.data() for the record itself
 console.log(accountmanagement)
 ```
 

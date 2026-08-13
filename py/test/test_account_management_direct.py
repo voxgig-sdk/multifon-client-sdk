@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from multifonclient_sdk.utility.voxgig_struct import voxgig_struct as vs
 from multifonclient_sdk import MultifonClientSDK
-from core import helpers
+from multifonclient_sdk.core import helpers
 from test import runner
 
 
@@ -56,16 +56,16 @@ def _account_management_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "MULTIFONCLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID": {},
-        "MULTIFONCLIENT_TEST_LIVE": "FALSE",
-        "MULTIFONCLIENT_APIKEY": "NONE",
+        "MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID": {},
+        "MULTIFON_CLIENT_TEST_LIVE": "FALSE",
+        "MULTIFON_CLIENT_APIKEY": "NONE",
     })
 
-    live = env.get("MULTIFONCLIENT_TEST_LIVE") == "TRUE"
+    live = env.get("MULTIFON_CLIENT_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MULTIFONCLIENT_APIKEY"),
+            "apikey": env.get("MULTIFON_CLIENT_APIKEY"),
         }
         client = MultifonClientSDK(merged_opts)
         return {

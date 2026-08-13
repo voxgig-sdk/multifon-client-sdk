@@ -26,8 +26,8 @@ import {
 describe('AccountManagementEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MULTIFONCLIENT_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MULTIFONCLIENT_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MULTIFON_CLIENT_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MULTIFON_CLIENT_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MultifonClientSDK.test()
@@ -62,7 +62,7 @@ describe('AccountManagementEntity', async () => {
     // LOAD
     const account_management_ref01_ent = client.AccountManagement()
     const account_management_ref01_match_dt0: any = {}
-    const account_management_ref01_data_dt0 = await account_management_ref01_ent.load(account_management_ref01_match_dt0)
+    const account_management_ref01_data_dt0 = (await account_management_ref01_ent.load(account_management_ref01_match_dt0)).data()
     assert(null != account_management_ref01_data_dt0)
 
 
