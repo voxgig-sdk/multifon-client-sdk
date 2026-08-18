@@ -40,7 +40,7 @@ class MultifonClientSDK
         $utility = new MultifonClientUtility();
         $this->_utility = $utility;
 
-        $config = MultifonClientConfig::make_config();
+        $config = MultifonClientConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

@@ -28,7 +28,7 @@ class MultifonClientSDK
     utility = MultifonClientUtility.new
     @_utility = utility
 
-    config = MultifonClientConfig.make_config
+    config = MultifonClientConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

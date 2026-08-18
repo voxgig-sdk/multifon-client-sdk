@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from multifonclient_sdk.config import make_config
+from multifonclient_sdk.config import shared_config
 from multifonclient_sdk.features import _make_feature
 from multifonclient_sdk.core.control import MultifonClientControl
 from multifonclient_sdk.core.error import MultifonClientError
@@ -24,7 +24,7 @@ from multifonclient_sdk.core.spec import MultifonClientSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 
