@@ -8,6 +8,7 @@ main: kit: entity: api: {
     {
       name: "message"
       req: false
+      short: "Success message"
       type: "`$STRING`"
     }
     {

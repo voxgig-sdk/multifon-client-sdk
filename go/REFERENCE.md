@@ -148,7 +148,7 @@ fmt.Println(api.GetName()) // "api"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `string` | No |  |
+| `message` | `string` | No | Success message |
 | `success` | `bool` | No |  |
 
 ### Operations

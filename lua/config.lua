@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "MultifonClient",
+      slug = "multifon-client",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -83,6 +86,7 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "message",
+            ["short"] = "Success message",
             ["type"] = "`$STRING`",
           },
           {

@@ -144,7 +144,7 @@ api = client.Api
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `String` | No |  |
+| `message` | `String` | No | Success message |
 | `success` | `Boolean` | No |  |
 
 ### Operations

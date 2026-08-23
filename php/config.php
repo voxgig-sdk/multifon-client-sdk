@@ -33,6 +33,9 @@ class MultifonClientConfig
         return [
             "main" => [
                 "name" => "MultifonClient",
+                "slug" => "multifon-client",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -109,6 +112,7 @@ class MultifonClientConfig
           'fields' => [
             [
               'name' => 'message',
+              'short' => 'Success message',
               'type' => '`$STRING`',
             ],
             [

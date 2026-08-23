@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "MultifonClient",
+            "slug": "multifon-client",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -104,6 +107,7 @@ def make_config():
         "fields": [
           {
             "name": "message",
+            "short": "Success message",
             "type": "`$STRING`",
           },
           {

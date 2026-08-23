@@ -250,7 +250,7 @@ API path: `/api`
 
 | Field | Description |
 | --- | --- |
-| `message` |  |
+| `message` | Success message |
 | `success` |  |
 
 Operations: Create.
@@ -294,7 +294,7 @@ Create an instance: `api = client.Api`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `String` |  |
+| `message` | `String` | Success message |
 | `success` | `Boolean` |  |
 
 #### Example: Create

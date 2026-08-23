@@ -19,6 +19,9 @@ module MultifonClientConfig
     {
       "main" => {
         "name" => "MultifonClient",
+        "slug" => "multifon-client",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -95,6 +98,7 @@ module MultifonClientConfig
           "fields" => [
             {
               "name" => "message",
+              "short" => "Success message",
               "type" => "`$STRING`",
             },
             {

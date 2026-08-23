@@ -137,7 +137,7 @@ api = client.Api()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `str` | No |  |
+| `message` | `str` | No | Success message |
 | `success` | `bool` | No |  |
 
 ### Operations

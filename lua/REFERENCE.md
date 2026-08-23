@@ -141,7 +141,7 @@ local api = client:Api(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `string` | No |  |
+| `message` | `string` | No | Success message |
 | `success` | `boolean` | No |  |
 
 ### Operations

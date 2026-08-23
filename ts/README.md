@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -302,7 +302,7 @@ API path: `/api`
 
 | Field | Description |
 | --- | --- |
-| `message` |  |
+| `message` | Success message |
 | `success` |  |
 
 Operations: create.
@@ -345,7 +345,7 @@ Create an instance: `const api = client.Api()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `string` |  |
+| `message` | `string` | Success message |
 | `success` | `boolean` |  |
 
 #### Example: Create

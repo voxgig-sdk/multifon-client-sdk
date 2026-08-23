@@ -173,7 +173,7 @@ const api = client.Api()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `message` | `string` | No |  |
+| `message` | `string` | No | Success message |
 | `success` | `boolean` | No |  |
 
 ### Operations

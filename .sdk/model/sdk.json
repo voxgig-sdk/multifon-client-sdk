@@ -94,6 +94,7 @@
               "active": true,
               "name": "message",
               "req": false,
+              "short": "Success message",
               "type": "`$STRING`"
             },
             {

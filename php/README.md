@@ -260,7 +260,7 @@ API path: `/api`
 
 | Field | Description |
 | --- | --- |
-| `message` |  |
+| `message` | Success message |
 | `success` |  |
 
 Operations: Create.
@@ -304,7 +304,7 @@ Create an instance: `$api = $client->Api();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `message` | `string` |  |
+| `message` | `string` | Success message |
 | `success` | `bool` |  |
 
 #### Example: Create
