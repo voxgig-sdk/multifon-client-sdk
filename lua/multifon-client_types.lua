@@ -9,12 +9,15 @@
 ---@class AccountManagement
 
 ---@class AccountManagementLoadMatch
+---@field auth? string
+---@field method string
 
 ---@class Api
 ---@field message? string
 ---@field success? boolean
 
 ---@class ApiCreateData
+---@field method string
 ---@field message? string
 ---@field success? boolean
 

@@ -18,6 +18,8 @@ type AccountManagement struct {
 
 // AccountManagementLoadMatch is the typed request payload for AccountManagement.LoadTyped.
 type AccountManagementLoadMatch struct {
+	Auth *string `json:"auth,omitempty"`
+	Method string `json:"method"`
 }
 
 // Api is the typed data model for the api entity.
@@ -28,6 +30,7 @@ type Api struct {
 
 // ApiCreateData is the typed request payload for Api.CreateTyped.
 type ApiCreateData struct {
+	Method string `json:"method"`
 	Message *string `json:"message,omitempty"`
 	Success *bool `json:"success,omitempty"`
 }

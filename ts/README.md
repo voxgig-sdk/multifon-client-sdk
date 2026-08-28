@@ -41,7 +41,7 @@ const client = new MultifonClientSDK({
 
 ```ts
 try {
-  const accountmanagement = await client.AccountManagement().load()
+  const accountmanagement = await client.AccountManagement().load({ method: 'example_method' })
   console.log(accountmanagement)
 } catch (err) {
   console.error('load failed:', err)
@@ -55,7 +55,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const accountmanagement = await client.AccountManagement().load()
+  const accountmanagement = await client.AccountManagement().load({ method: "example" })
   console.log(accountmanagement)
 } catch (err) {
   console.error('load failed:', err)
@@ -122,7 +122,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MultifonClientSDK.test()
 
-const accountmanagement = await client.AccountManagement().load()
+const accountmanagement = await client.AccountManagement().load({ method: 'example_method' })
 // accountmanagement is the entity, populated with mock response data
 // — call accountmanagement.data() for the record itself
 console.log(accountmanagement)
@@ -143,7 +143,7 @@ Entity instances remember their last match and data:
 const entity = client.AccountManagement()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ method: 'example_method' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -327,7 +327,7 @@ Create an instance: `const account_management = client.AccountManagement()`
 #### Example: Load
 
 ```ts
-const account_management = await client.AccountManagement().load()
+const account_management = await client.AccountManagement().load({ method: 'method' })
 ```
 
 
@@ -352,8 +352,32 @@ Create an instance: `const api = client.Api()`
 
 ```ts
 const api = await client.Api().create({
+  method: 'example_method',
 })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -426,7 +450,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const accountmanagement = client.AccountManagement()
-await accountmanagement.load()
+await accountmanagement.load({ method: "example" })
 
 // accountmanagement.data() now returns the accountmanagement data from the last `load`
 // accountmanagement.match() returns the last match criteria

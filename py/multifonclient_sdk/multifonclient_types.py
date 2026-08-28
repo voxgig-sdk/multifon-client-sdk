@@ -20,8 +20,12 @@ class AccountManagement(TypedDict):
     pass
 
 
-class AccountManagementLoadMatch(TypedDict):
-    pass
+class AccountManagementLoadMatchRequired(TypedDict):
+    method: str
+
+
+class AccountManagementLoadMatch(AccountManagementLoadMatchRequired, total=False):
+    auth: str
 
 
 class Api(TypedDict, total=False):
@@ -29,6 +33,10 @@ class Api(TypedDict, total=False):
     success: bool
 
 
-class ApiCreateData(TypedDict, total=False):
+class ApiCreateDataRequired(TypedDict):
+    method: str
+
+
+class ApiCreateData(ApiCreateDataRequired, total=False):
     message: str
     success: bool

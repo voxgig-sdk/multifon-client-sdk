@@ -9,6 +9,8 @@ export interface AccountManagement {
 }
 
 export interface AccountManagementLoadMatch {
+  auth?: string
+  method: string
 }
 
 export interface Api {
@@ -17,6 +19,7 @@ export interface Api {
 }
 
 export interface ApiCreateData {
+  method: string
   message?: string
   success?: boolean
 }

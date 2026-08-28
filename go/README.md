@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single accountManagement — the value is the loaded record.
-    accountManagement, err := client.AccountManagement(nil).Load(nil, nil)
+    accountManagement, err := client.AccountManagement(nil).Load(map[string]any{"method": "example_method"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-accountmanagement, err := client.AccountManagement(nil).Load(nil, nil)
+accountmanagement, err := client.AccountManagement(nil).Load(map[string]any{"method": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 accountManagement, err := client.AccountManagement(nil).Load(
-    nil, nil,
+    map[string]any{"method": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -299,7 +299,7 @@ Create an instance: `accountManagement := client.AccountManagement(nil)`
 #### Example: Load
 
 ```go
-accountManagement, err := client.AccountManagement(nil).Load(nil, nil)
+accountManagement, err := client.AccountManagement(nil).Load(map[string]any{"method": "method"}, nil)
 if err != nil {
     panic(err)
 }
@@ -328,12 +328,36 @@ Create an instance: `api := client.Api(nil)`
 
 ```go
 result, err := client.Api(nil).Create(map[string]any{
+    "method": "example_method",
 }, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(result)
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -410,7 +434,7 @@ stores the returned data and match criteria internally.
 
 ```go
 accountmanagement := client.AccountManagement(nil)
-accountmanagement.Load(nil, nil)
+accountmanagement.Load(map[string]any{"method": "example"}, nil)
 
 // accountmanagement.Data() now returns the accountmanagement data from the last load
 // accountmanagement.Match() returns the last match criteria

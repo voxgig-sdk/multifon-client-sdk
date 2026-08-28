@@ -38,7 +38,7 @@ $client = new MultifonClientSDK([
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the AccountManagement record (throws on error).
-    $accountmanagement = $client->AccountManagement()->load();
+    $accountmanagement = $client->AccountManagement()->load(["method" => "example_method"]);
     print_r($accountmanagement);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $accountmanagement = $client->AccountManagement()->load();
+    $accountmanagement = $client->AccountManagement()->load(["method" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -127,7 +127,7 @@ $client = MultifonClientSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$accountmanagement = $client->AccountManagement()->load();
+$accountmanagement = $client->AccountManagement()->load(["method" => "example"]);
 print_r($accountmanagement);
 ```
 
@@ -286,7 +286,7 @@ Create an instance: `$account_management = $client->AccountManagement();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the AccountManagement record (throws on error).
-$account_management = $client->AccountManagement()->load();
+$account_management = $client->AccountManagement()->load(["method" => "method"]);
 ```
 
 
@@ -311,8 +311,32 @@ Create an instance: `$api = $client->Api();`
 
 ```php
 $api = $client->Api()->create([
+    "method" => null, // string
 ]);
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -392,7 +416,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $accountmanagement = $client->AccountManagement();
-$accountmanagement->load();
+$accountmanagement->load(["method" => "example"]);
 
 // $accountmanagement->data_get() now returns the accountmanagement data from the last load
 // $accountmanagement->match_get() returns the last match criteria

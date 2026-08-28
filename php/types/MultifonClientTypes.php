@@ -20,6 +20,8 @@ class AccountManagement
 /** Request payload for AccountManagement#load. */
 class AccountManagementLoadMatch
 {
+    public ?string $auth = null;
+    public string $method;
 }
 
 /** Api entity data model. */
@@ -32,6 +34,7 @@ class Api
 /** Request payload for Api#create. */
 class ApiCreateData
 {
+    public string $method;
     public ?string $message = null;
     public ?bool $success = null;
 }

@@ -13,8 +13,17 @@ class AccountManagement
 end
 
 # Request payload for AccountManagement#load.
-class AccountManagementLoadMatch
-end
+#
+# @!attribute [rw] auth
+#   @return [String, nil]
+#
+# @!attribute [rw] method
+#   @return [String]
+AccountManagementLoadMatch = Struct.new(
+  :auth,
+  :method,
+  keyword_init: true
+)
 
 # Api entity data model.
 #
@@ -31,12 +40,16 @@ Api = Struct.new(
 
 # Request payload for Api#create.
 #
+# @!attribute [rw] method
+#   @return [String]
+#
 # @!attribute [rw] message
 #   @return [String, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 ApiCreateData = Struct.new(
+  :method,
   :message,
   :success,
   keyword_init: true
