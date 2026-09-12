@@ -81,7 +81,7 @@ def account_management_basic_setup(extra)
     "MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID" => idmap,
     "MULTIFON_CLIENT_TEST_LIVE" => "FALSE",
     "MULTIFON_CLIENT_TEST_EXPLAIN" => "FALSE",
-    "MULTIFON_CLIENT_APIKEY" => "NONE",
+    "MULTIFON_CLIENT_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -92,6 +92,9 @@ def account_management_basic_setup(extra)
 
   if env["MULTIFON_CLIENT_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["MULTIFON_CLIENT_APIKEY"],
       },

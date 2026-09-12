@@ -37,8 +37,10 @@ main: kit: entity: api: {
           }
           method: "POST"
           orig: "/api"
-          parts: [
-            "api"
+          segments: [
+            {
+              lit: "api"
+            }
           ]
           select: {
             exist: [

@@ -74,8 +74,10 @@ module MultifonClientConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api",
-                  "parts" => [
-                    "api",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -87,6 +89,9 @@ module MultifonClientConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                  ],
                 },
               ],
             },
@@ -128,8 +133,10 @@ module MultifonClientConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/api",
-                  "parts" => [
-                    "api",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -140,6 +147,9 @@ module MultifonClientConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                  ],
                 },
               ],
             },

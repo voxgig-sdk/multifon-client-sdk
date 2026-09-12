@@ -100,14 +100,22 @@ func account_managementDirectSetup(mockres any) *account_managementDirectSetupRe
 	env := envOverride(map[string]any{
 		"MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID": map[string]any{},
 		"MULTIFON_CLIENT_TEST_LIVE":    "FALSE",
-		"MULTIFON_CLIENT_APIKEY":       "NONE",
+		"MULTIFON_CLIENT_APIKEY":       "",
 	})
 
 	live := env["MULTIFON_CLIENT_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["MULTIFON_CLIENT_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewMultifonClientSDK(mergedOpts)
 

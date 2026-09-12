@@ -58,15 +58,18 @@ def _account_management_direct_setup(mockres):
     env = runner.env_override({
         "MULTIFON_CLIENT_TEST_ACCOUNT_MANAGEMENT_ENTID": {},
         "MULTIFON_CLIENT_TEST_LIVE": "FALSE",
-        "MULTIFON_CLIENT_APIKEY": "NONE",
+        "MULTIFON_CLIENT_APIKEY": "",
     })
 
     live = env.get("MULTIFON_CLIENT_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("MULTIFON_CLIENT_APIKEY"),
-        }
+        })
         client = MultifonClientSDK(merged_opts)
         return {
             "client": client,
