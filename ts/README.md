@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MultifonClientSDK } from '@voxgig-sdk/multifon-client'
+import { MultifonClientSDK } from '@voxgig-sdk/multifon-client-sdk'
 
 const client = new MultifonClientSDK({
   apikey: process.env.MULTIFON_CLIENT_APIKEY,
@@ -439,7 +439,7 @@ multifon-client/
 Import the SDK from the package root:
 
 ```ts
-import { MultifonClientSDK } from '@voxgig-sdk/multifon-client'
+import { MultifonClientSDK } from '@voxgig-sdk/multifon-client-sdk'
 ```
 
 ### Entity state

@@ -890,7 +890,7 @@
             "registry": {
               "active": false,
               "name": "npm",
-              "package": "",
+              "package": "@voxgig-sdk/multifon-client-sdk",
               "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {

@@ -105,7 +105,7 @@ local result, err = client:AccountManagement():load({ method = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
+| TypeScript | `@voxgig-sdk/multifon-client-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
 | Python | `voxgig-sdk-multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
 | PHP | `voxgig-sdk/multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/multifon-client-sdk/go` | `go get github.com/voxgig-sdk/multifon-client-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:AccountManagement():load({ method = "example" })
 ### TypeScript
 
 ```ts
-import { MultifonClientSDK } from '@voxgig-sdk/multifon-client'
+import { MultifonClientSDK } from '@voxgig-sdk/multifon-client-sdk'
 
 const client = new MultifonClientSDK({
   apikey: process.env.MULTIFON_CLIENT_APIKEY,
