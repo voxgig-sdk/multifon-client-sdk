@@ -25,5 +25,255 @@
         "success": false
       }
     }
+  },
+  "requests": {
+    "POST /api": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "updateAccountSettings",
+        "parameters": [
+          {
+            "description": "The method to set specific settings",
+            "in": "query",
+            "name": "method",
+            "required": true,
+            "schema": {
+              "enum": [
+                "setRouting",
+                "setCallingLines",
+                "setStatus",
+                "setPassword"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "enabled": {
+                        "description": "Enable or disable routing",
+                        "type": "boolean"
+                      },
+                      "rules": {
+                        "items": {
+                          "properties": {
+                            "destination": {
+                              "type": "string"
+                            },
+                            "priority": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "required": [
+                      "enabled"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "lines": {
+                        "items": {
+                          "properties": {
+                            "active": {
+                              "type": "boolean"
+                            },
+                            "number": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "required": [
+                      "lines"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "status": {
+                        "description": "New account status",
+                        "enum": [
+                          "active",
+                          "inactive"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "status"
+                    ],
+                    "type": "object"
+                  },
+                  {
+                    "properties": {
+                      "currentPassword": {
+                        "description": "Current password",
+                        "format": "password",
+                        "type": "string"
+                      },
+                      "newPassword": {
+                        "description": "New password",
+                        "format": "password",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "currentPassword",
+                      "newPassword"
+                    ],
+                    "type": "object"
+                  }
+                ]
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "value": {
+                    "description": "The value to set for the specified method",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "description": "Success message",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully updated settings"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - Invalid parameters or data"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Authentication required or failed"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Error code",
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Error message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          },
+          {
+            "BasicAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key authentication via query parameter",
+            "in": "query",
+            "name": "auth",
+            "type": "apiKey"
+          },
+          "BasicAuth": {
+            "description": "Basic HTTP authentication",
+            "scheme": "basic",
+            "type": "http"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

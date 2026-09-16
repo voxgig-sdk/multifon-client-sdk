@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "account_management": {
           "active": true,
@@ -59,6 +123,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /api",
+                    "json": "{\"operationId\":\"getAccountInfo\",\"parameters\":[{\"description\":\"The method to retrieve specific information\",\"in\":\"query\",\"name\":\"method\",\"required\":true,\"schema\":{\"enum\":[\"getRouting\",\"getCallingLines\",\"getStatus\",\"getBalance\",\"getProfile\"],\"type\":\"string\"}},{\"description\":\"Authentication token or credentials\",\"in\":\"query\",\"name\":\"auth\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"routing\":{\"properties\":{\"enabled\":{\"description\":\"Whether routing is enabled\",\"type\":\"boolean\"},\"rules\":{\"items\":{\"properties\":{\"destination\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"priority\":{\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"},{\"properties\":{\"lines\":{\"items\":{\"properties\":{\"active\":{\"description\":\"Whether the line is active\",\"type\":\"boolean\"},\"name\":{\"description\":\"Line name or label\",\"type\":\"string\"},\"number\":{\"description\":\"Phone number\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},{\"properties\":{\"lastUpdated\":{\"description\":\"Last status update timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"status\":{\"description\":\"Current account status\",\"enum\":[\"active\",\"inactive\",\"suspended\"],\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"balance\":{\"description\":\"Current account balance\",\"format\":\"double\",\"type\":\"number\"},\"currency\":{\"description\":\"Currency code\",\"example\":\"RUB\",\"type\":\"string\"},\"lastUpdated\":{\"description\":\"Last balance update timestamp\",\"format\":\"date-time\",\"type\":\"string\"}},\"type\":\"object\"},{\"properties\":{\"profile\":{\"properties\":{\"email\":{\"description\":\"Email address\",\"format\":\"email\",\"type\":\"string\"},\"name\":{\"description\":\"User full name\",\"type\":\"string\"},\"phoneNumber\":{\"description\":\"Primary phone number\",\"type\":\"string\"},\"registrationDate\":{\"description\":\"Account registration date\",\"format\":\"date-time\",\"type\":\"string\"},\"userId\":{\"description\":\"User identifier\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}]}}},\"description\":\"Successful response\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required or failed\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"ApiKeyAuth\":[]},{\"BasicAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key authentication via query parameter\",\"in\":\"query\",\"name\":\"auth\",\"type\":\"apiKey\"},\"BasicAuth\":{\"description\":\"Basic HTTP authentication\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -126,6 +196,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /api",
+                    "json": "{\"operationId\":\"updateAccountSettings\",\"parameters\":[{\"description\":\"The method to set specific settings\",\"in\":\"query\",\"name\":\"method\",\"required\":true,\"schema\":{\"enum\":[\"setRouting\",\"setCallingLines\",\"setStatus\",\"setPassword\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"enabled\":{\"description\":\"Enable or disable routing\",\"type\":\"boolean\"},\"rules\":{\"items\":{\"properties\":{\"destination\":{\"type\":\"string\"},\"priority\":{\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"enabled\"],\"type\":\"object\"},{\"properties\":{\"lines\":{\"items\":{\"properties\":{\"active\":{\"type\":\"boolean\"},\"number\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"required\":[\"lines\"],\"type\":\"object\"},{\"properties\":{\"status\":{\"description\":\"New account status\",\"enum\":[\"active\",\"inactive\"],\"type\":\"string\"}},\"required\":[\"status\"],\"type\":\"object\"},{\"properties\":{\"currentPassword\":{\"description\":\"Current password\",\"format\":\"password\",\"type\":\"string\"},\"newPassword\":{\"description\":\"New password\",\"format\":\"password\",\"type\":\"string\"}},\"required\":[\"currentPassword\",\"newPassword\"],\"type\":\"object\"}]}},\"application/x-www-form-urlencoded\":{\"schema\":{\"properties\":{\"value\":{\"description\":\"The value to set for the specified method\",\"type\":\"string\"}},\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"message\":{\"description\":\"Success message\",\"type\":\"string\"},\"success\":{\"example\":true,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successfully updated settings\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters or data\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Authentication required or failed\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"message\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"security\":[{\"ApiKeyAuth\":[]},{\"BasicAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key authentication via query parameter\",\"in\":\"query\",\"name\":\"auth\",\"type\":\"apiKey\"},\"BasicAuth\":{\"description\":\"Basic HTTP authentication\",\"scheme\":\"basic\",\"type\":\"http\"}},\"securitySource\":\"operation\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/api",
@@ -153,13 +229,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -250,6 +536,102 @@
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
           "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
+          "version": "0.0.1"
         }
       },
       "flow": {
@@ -330,6 +712,48 @@
         "website": "https://sm.megafon.ru"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -884,6 +1308,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -925,7 +1350,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

@@ -1,12 +1,18 @@
 # MultifonClient SDK feature factory
 
 from multifonclient_sdk.feature.base_feature import MultifonClientBaseFeature
+from multifonclient_sdk.feature.ratelimit_feature import MultifonClientRatelimitFeature
+from multifonclient_sdk.feature.retry_feature import MultifonClientRetryFeature
 from multifonclient_sdk.feature.test_feature import MultifonClientTestFeature
+from multifonclient_sdk.feature.timeout_feature import MultifonClientTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: MultifonClientBaseFeature(),
+    "ratelimit": lambda: MultifonClientRatelimitFeature(),
+    "retry": lambda: MultifonClientRetryFeature(),
     "test": lambda: MultifonClientTestFeature(),
+    "timeout": lambda: MultifonClientTimeoutFeature(),
 }
 
 
