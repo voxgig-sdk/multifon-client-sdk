@@ -103,6 +103,8 @@ class MultifonClientConfig
                 "base" => "https://sm.megafon.ru",
                 "auth" => [
                     "prefix" => "",
+                    "in" => "query",
+                    "name" => "auth",
                 ],
                 "headers" => [
           'content-type' => 'application/json',

@@ -105,12 +105,12 @@ local result, err = client:AccountManagement():load({ method = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/multifon-client-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
-| Python | `voxgig-sdk-multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
-| PHP | `voxgig-sdk/multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
+| TypeScript | `@voxgig-sdk/multifon-client-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/tags) |
+| Python | `voxgig-sdk-multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/tags) |
+| PHP | `voxgig-sdk/multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/multifon-client-sdk/go` | `go get github.com/voxgig-sdk/multifon-client-sdk/go@latest` |
-| Ruby | `voxgig-sdk-multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
-| Lua | `voxgig-sdk-multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/releases) |
+| Ruby | `voxgig-sdk-multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/tags) |
+| Lua | `voxgig-sdk-multifon-client` | publish pending — [install from git tag](https://github.com/voxgig-sdk/multifon-client-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/multifon-client-sdk/go-cli` | `go install github.com/voxgig-sdk/multifon-client-sdk/go-cli/cmd/multifon-client@latest` |
 | Go MCP server | `github.com/voxgig-sdk/multifon-client-sdk/go-mcp` | `go get github.com/voxgig-sdk/multifon-client-sdk/go-mcp@latest` |
 

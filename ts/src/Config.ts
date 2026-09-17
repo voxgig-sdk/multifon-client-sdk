@@ -123,6 +123,8 @@ class Config {
 
     auth: {
       prefix: '',
+      in: 'query',
+      name: 'auth',
     },
 
     headers: {
@@ -131,12 +133,12 @@ class Config {
 
     entity: {
       
-      account_management: {
-      },
-
-      api: {
-      },
-
+        account_management: {
+        },
+  
+        api: {
+        },
+  
     }
   }
 

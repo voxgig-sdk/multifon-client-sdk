@@ -77,6 +77,8 @@ local function make_config()
       base = "https://sm.megafon.ru",
       auth = {
         prefix = "",
+        ["in"] = "query",
+        name = "auth",
       },
       headers = {
         ["content-type"] = "application/json",

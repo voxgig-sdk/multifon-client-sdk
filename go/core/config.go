@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://sm.megafon.ru",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "query",
+				"name": "auth",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",
