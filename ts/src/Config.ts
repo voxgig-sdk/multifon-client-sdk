@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -153,23 +146,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "auth",
-                    "orig": "auth",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "method",
-                    "orig": "method",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/api",
@@ -178,19 +154,37 @@ class Config {
                   "lit": "api"
                 }
               ],
+              "parts": [
+                "api"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "auth",
+                    "orig": "auth",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "method",
+                    "orig": "method",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "auth",
                   "method"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "api"
-              ]
+              }
             }
           ]
         }
@@ -203,11 +197,13 @@ class Config {
       "fields": [
         {
           "name": "message",
-          "short": "Success message",
-          "type": "`$STRING`"
+          "title": "Message",
+          "type": "`$STRING`",
+          "short": "Success message"
         },
         {
           "name": "success",
+          "title": "Success",
           "type": "`$BOOLEAN`"
         }
       ],
@@ -218,17 +214,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "method",
-                    "orig": "method",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "POST",
               "orig": "/api",
@@ -237,18 +222,30 @@ class Config {
                   "lit": "api"
                 }
               ],
-              "select": {
-                "exist": [
-                  "method"
-                ]
-              },
+              "parts": [
+                "api"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "api"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "method",
+                    "orig": "method",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "method"
+                ]
+              }
             }
           ]
         }

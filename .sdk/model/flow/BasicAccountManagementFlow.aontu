@@ -1,0 +1,28 @@
+# BasicAccountManagementFlow
+
+main: kit: flow: BasicAccountManagementFlow:
+{
+  entity: "account_management",
+  kind: "basic",
+  name: "BasicAccountManagementFlow",
+  step: [
+    {
+      i: {
+        ref: "account_management_ref01",
+        srcdatavar: "account_management_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-account_management_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAccountManagementFlow"
+}

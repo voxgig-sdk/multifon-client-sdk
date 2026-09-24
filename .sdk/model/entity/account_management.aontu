@@ -1,0 +1,63 @@
+# Entity: account_management
+
+main: kit: entity: account_management: {
+
+  alias: field: {}
+
+  name: "account_management"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /api"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "auth"
+                or: "auth"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "method"
+                or: "method"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api"
+          q: {
+            exist: [
+              "auth"
+              "method"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  fields: {
+  }
+
+
+
+}

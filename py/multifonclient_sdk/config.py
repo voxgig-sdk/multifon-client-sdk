@@ -127,23 +127,6 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "auth",
-                      "orig": "auth",
-                      "type": "`$STRING`",
-                    },
-                    {
-                      "kind": "query",
-                      "name": "method",
-                      "orig": "method",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api",
@@ -152,19 +135,37 @@ def make_config():
                     "lit": "api",
                   },
                 ],
+                "parts": [
+                  "api",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "auth",
+                      "orig": "auth",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                    },
+                    {
+                      "name": "method",
+                      "orig": "method",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "auth",
                     "method",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "api",
-                ],
               },
             ],
           },
@@ -177,11 +178,13 @@ def make_config():
         "fields": [
           {
             "name": "message",
-            "short": "Success message",
+            "title": "Message",
             "type": "`$STRING`",
+            "short": "Success message",
           },
           {
             "name": "success",
+            "title": "Success",
             "type": "`$BOOLEAN`",
           },
         ],
@@ -192,17 +195,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {
-                  "query": [
-                    {
-                      "kind": "query",
-                      "name": "method",
-                      "orig": "method",
-                      "reqd": True,
-                      "type": "`$STRING`",
-                    },
-                  ],
-                },
                 "kind": "http",
                 "method": "POST",
                 "orig": "/api",
@@ -211,18 +203,30 @@ def make_config():
                     "lit": "api",
                   },
                 ],
+                "parts": [
+                  "api",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "method",
+                      "orig": "method",
+                      "type": "`$STRING`",
+                      "kind": "query",
+                      "reqd": True,
+                    },
+                  ],
+                },
                 "select": {
                   "exist": [
                     "method",
                   ],
                 },
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "parts": [
-                  "api",
-                ],
               },
             ],
           },

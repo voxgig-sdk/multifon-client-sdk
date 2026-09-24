@@ -98,23 +98,6 @@ local function make_config()
             ["name"] = "load",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "auth",
-                      ["orig"] = "auth",
-                      ["type"] = "`$STRING`",
-                    },
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "method",
-                      ["orig"] = "method",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api",
@@ -123,18 +106,36 @@ local function make_config()
                     ["lit"] = "api",
                   },
                 },
+                ["parts"] = {
+                  "api",
+                },
+                ["rename"] = {},
+                ["transform"] = {
+                  ["req"] = "`reqdata`",
+                  ["res"] = "`body`",
+                },
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "auth",
+                      ["orig"] = "auth",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                    },
+                    {
+                      ["name"] = "method",
+                      ["orig"] = "method",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
                 ["select"] = {
                   ["exist"] = {
                     "auth",
                     "method",
                   },
-                },
-                ["transform"] = {
-                  ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
-                },
-                ["parts"] = {
-                  "api",
                 },
               },
             },
@@ -148,11 +149,13 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "message",
-            ["short"] = "Success message",
+            ["title"] = "Message",
             ["type"] = "`$STRING`",
+            ["short"] = "Success message",
           },
           {
             ["name"] = "success",
+            ["title"] = "Success",
             ["type"] = "`$BOOLEAN`",
           },
         },
@@ -163,17 +166,6 @@ local function make_config()
             ["name"] = "create",
             ["points"] = {
               {
-                ["args"] = {
-                  ["query"] = {
-                    {
-                      ["kind"] = "query",
-                      ["name"] = "method",
-                      ["orig"] = "method",
-                      ["reqd"] = true,
-                      ["type"] = "`$STRING`",
-                    },
-                  },
-                },
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/api",
@@ -182,17 +174,29 @@ local function make_config()
                     ["lit"] = "api",
                   },
                 },
-                ["select"] = {
-                  ["exist"] = {
-                    "method",
-                  },
+                ["parts"] = {
+                  "api",
                 },
+                ["rename"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
-                ["parts"] = {
-                  "api",
+                ["args"] = {
+                  ["query"] = {
+                    {
+                      ["name"] = "method",
+                      ["orig"] = "method",
+                      ["type"] = "`$STRING`",
+                      ["kind"] = "query",
+                      ["reqd"] = true,
+                    },
+                  },
+                },
+                ["select"] = {
+                  ["exist"] = {
+                    "method",
+                  },
                 },
               },
             },

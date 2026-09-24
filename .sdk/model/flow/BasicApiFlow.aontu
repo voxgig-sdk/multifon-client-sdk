@@ -1,0 +1,18 @@
+# BasicApiFlow
+
+main: kit: flow: BasicApiFlow:
+{
+  entity: "api",
+  kind: "basic",
+  name: "BasicApiFlow",
+  step: [
+    {
+      i: {
+        ref: "api_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicApiFlow"
+}
