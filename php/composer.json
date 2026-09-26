@@ -1,5 +1,5 @@
 {
-  "name": "voxgig-sdk/multifon-client",
+  "name": "voxgig-sdk/multifon-client-sdk",
   "description": "Unofficial generated PHP SDK for the Multifon Client public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "multifon-client"],
