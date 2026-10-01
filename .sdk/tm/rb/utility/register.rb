@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 MultifonClientUtility.registrar = ->(u) {
   u.clean = MultifonClientUtilities::Clean
+  u.clean_add = MultifonClientUtilities::CleanAdd
+  u.clean_explain = MultifonClientUtilities::CleanExplain
   u.done = MultifonClientUtilities::Done
   u.make_error = MultifonClientUtilities::MakeError
   u.feature_add = MultifonClientUtilities::FeatureAdd

@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/multifon-client-sdk/releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/multifon-client-sdk
+composer config repositories.multifon-client-sdk path ./multifon-client-sdk/php
+composer require voxgig-sdk/multifon-client-sdk:@dev
+```
 
 
 ## Tutorial: your first API call

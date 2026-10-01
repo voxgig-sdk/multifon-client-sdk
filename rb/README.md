@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/multifon-client-sdk/releases](https://github.com/voxgig-sdk/multifon-client-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/multifon-client-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-multifon-client-sdk", path: "./multifon-client-sdk/rb"
+```
 
 
 ## Tutorial: your first API call

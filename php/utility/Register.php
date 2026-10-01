@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 MultifonClientUtility::setRegistrar(function (MultifonClientUtility $u): void {
     $u->clean = [MultifonClientClean::class, 'call'];
+    $u->clean_add = [MultifonClientClean::class, 'add'];
+    $u->clean_explain = [MultifonClientDone::class, 'clean_explain'];
     $u->done = [MultifonClientDone::class, 'call'];
     $u->make_error = [MultifonClientMakeError::class, 'call'];
     $u->feature_add = [MultifonClientFeatureAdd::class, 'call'];
