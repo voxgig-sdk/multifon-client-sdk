@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -153,9 +154,12 @@ class Config {
                             },
                             "select": {
                                 "exist": [
-                                    "auth",
                                     "method"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -217,6 +221,25 @@ class Config {
                                 "exist": [
                                     "method"
                                 ]
+                            },
+                            "body": {
+                                "alternatives": [
+                                    {
+                                        "fields": [
+                                            {
+                                                "name": "value"
+                                            }
+                                        ],
+                                        "kind": "form",
+                                        "media": "application/x-www-form-urlencoded"
+                                    }
+                                ],
+                                "kind": "json",
+                                "media": "application/json"
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]

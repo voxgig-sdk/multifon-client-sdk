@@ -16,13 +16,27 @@ const PLAN = [
         "path": "/api",
         "args": [],
         "select": {
-            "auth": "v1",
-            "method": "v1"
+            "method": "v1",
+            "auth": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "method",
             "auth"
+        ],
+        "queryArgs": [
+            {
+                "name": "auth",
+                "wire": "auth"
+            },
+            {
+                "name": "method",
+                "wire": "method"
+            }
         ],
         "auth": [
             [
@@ -45,7 +59,8 @@ const PLAN = [
                 ]
             }
         },
-        "idField": "id"
+        "idField": "id",
+        "ownQuery": "auth"
     },
     {
         "entity": "api",
@@ -58,9 +73,14 @@ const PLAN = [
             "method": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "method"
         ],
+        "queryArgs": [],
         "auth": [
             [
                 {
@@ -74,7 +94,8 @@ const PLAN = [
             "success": true,
             "message": "x"
         },
-        "idField": "id"
+        "idField": "id",
+        "ownQuery": "auth"
     }
 ];
 (0, node_test_1.describe)('definition', () => {

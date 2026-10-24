@@ -26,6 +26,14 @@ main: kit: entity: api: {
       name: "create"
       points: [
         {
+          bf: [
+            "currentPassword"
+            "enabled"
+            "lines"
+            "newPassword"
+            "rules"
+            "status"
+          ]
           co: {
             id: "POST /api"
             source: "openapi3"
@@ -48,6 +56,25 @@ main: kit: entity: api: {
             exist: [
               "method"
             ]
+          }
+          rb: {
+            alternatives: [
+              {
+                fields: [
+                  {
+                    name: "value"
+                  }
+                ]
+                kind: "form"
+                media: "application/x-www-form-urlencoded"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

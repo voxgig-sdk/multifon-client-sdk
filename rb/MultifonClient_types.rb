@@ -43,15 +43,31 @@ Api = Struct.new(
 # @!attribute [rw] method
 #   @return [String]
 #
-# @!attribute [rw] message
-#   @return [String, nil]
+# @!attribute [rw] currentPassword
+#   @return [Object, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] enabled
+#   @return [Object, nil]
+#
+# @!attribute [rw] lines
+#   @return [Object, nil]
+#
+# @!attribute [rw] newPassword
+#   @return [Object, nil]
+#
+# @!attribute [rw] rules
+#   @return [Object, nil]
+#
+# @!attribute [rw] status
+#   @return [Object, nil]
 ApiCreateData = Struct.new(
   :method,
-  :message,
-  :success,
+  :currentPassword,
+  :enabled,
+  :lines,
+  :newPassword,
+  :rules,
+  :status,
   keyword_init: true
 )
 

@@ -29,8 +29,12 @@ type Api struct {
 // ApiCreateData is the typed request payload for Api.CreateTyped.
 type ApiCreateData struct {
 	Method string `json:"method"`
-	Message *string `json:"message,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	CurrentPassword *any `json:"currentPassword,omitempty"`
+	Enabled *any `json:"enabled,omitempty"`
+	Lines *any `json:"lines,omitempty"`
+	NewPassword *any `json:"newPassword,omitempty"`
+	Rules *any `json:"rules,omitempty"`
+	Status *any `json:"status,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

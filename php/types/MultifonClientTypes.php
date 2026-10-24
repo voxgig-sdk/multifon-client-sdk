@@ -35,7 +35,11 @@ class Api
 class ApiCreateData
 {
     public string $method;
-    public ?string $message = null;
-    public ?bool $success = null;
+    public mixed $currentPassword = null;
+    public mixed $enabled = null;
+    public mixed $lines = null;
+    public mixed $newPassword = null;
+    public mixed $rules = null;
+    public mixed $status = null;
 }
 

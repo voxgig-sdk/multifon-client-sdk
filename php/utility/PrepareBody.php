@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // MultifonClient SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class MultifonClientPrepareBody
 {
     public static function call(MultifonClientContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (MultifonClientMedia::isRawRequest($ctx->point)) {
+                return MultifonClientMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

@@ -135,11 +135,14 @@
                   "o": "/api",
                   "q": {
                     "exist": [
-                      "auth",
                       "method"
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -187,6 +190,14 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "currentPassword",
+                    "enabled",
+                    "lines",
+                    "newPassword",
+                    "rules",
+                    "status"
+                  ],
                   "co": {
                     "id": "POST /api",
                     "source": "openapi3",
@@ -213,6 +224,25 @@
                     ]
                   },
                   "r": {},
+                  "rb": {
+                    "alternatives": [
+                      {
+                        "fields": [
+                          {
+                            "name": "value"
+                          }
+                        ],
+                        "kind": "form",
+                        "media": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "kind": "json",
+                    "media": "application/json"
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "api"
@@ -553,6 +583,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -701,6 +732,17 @@
         "description": "The Multifon Client API allows users to manage their account through GET and POST methods. Users can retrieve and set routing, calling lines, status, password, balance, and profile information using specific URL parameters.",
         "meta_source": "https://www.freepublicapis.com",
         "security": {
+          "alternatives": [
+            [
+              {
+                "in": "header",
+                "name": "Authorization",
+                "prefix": "Basic",
+                "scheme": "BasicAuth",
+                "type": "http"
+              }
+            ]
+          ],
           "in": "query",
           "name": "auth",
           "prefix": "",
@@ -722,7 +764,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -775,6 +817,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1005,7 +1052,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -1382,6 +1432,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

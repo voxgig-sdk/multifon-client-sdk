@@ -20,7 +20,11 @@ export interface Api {
 
 export interface ApiCreateData {
   method: string
-  message?: string
-  success?: boolean
+  currentPassword?: any
+  enabled?: any
+  lines?: any
+  newPassword?: any
+  rules?: any
+  status?: any
 }
 

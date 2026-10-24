@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -133,9 +134,12 @@ local function make_config()
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "auth",
                     "method",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -197,6 +201,25 @@ local function make_config()
                   ["exist"] = {
                     "method",
                   },
+                },
+                ["body"] = {
+                  ["alternatives"] = {
+                    {
+                      ["fields"] = {
+                        {
+                          ["name"] = "value",
+                        },
+                      },
+                      ["kind"] = "form",
+                      ["media"] = "application/x-www-form-urlencoded",
+                    },
+                  },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },

@@ -37,9 +37,12 @@ main: kit: entity: account_management: {
           o: "/api"
           q: {
             exist: [
-              "auth"
               "method"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

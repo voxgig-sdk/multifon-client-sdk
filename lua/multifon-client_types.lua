@@ -18,8 +18,12 @@
 
 ---@class ApiCreateData
 ---@field method string
----@field message? string
----@field success? boolean
+---@field currentPassword? any
+---@field enabled? any
+---@field lines? any
+---@field newPassword? any
+---@field rules? any
+---@field status? any
 
 local M = {}
 

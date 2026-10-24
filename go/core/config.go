@@ -71,6 +71,7 @@ func MakeConfig() map[string]any {
 				},
 				"optspec": map[string]any{
 					"clearTimer": "`$FUNCTION`",
+					"now": "`$FUNCTION`",
 					"setTimer": "`$FUNCTION`",
 				},
 				"strict": false,
@@ -137,9 +138,12 @@ func MakeConfig() map[string]any {
 								},
 								"select": map[string]any{
 									"exist": []any{
-										"auth",
 										"method",
 									},
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},
@@ -201,6 +205,25 @@ func MakeConfig() map[string]any {
 									"exist": []any{
 										"method",
 									},
+								},
+								"body": map[string]any{
+									"alternatives": []any{
+										map[string]any{
+											"fields": []any{
+												map[string]any{
+													"name": "value",
+												},
+											},
+											"kind": "form",
+											"media": "application/x-www-form-urlencoded",
+										},
+									},
+									"kind": "json",
+									"media": "application/json",
+								},
+								"response": map[string]any{
+									"kind": "json",
+									"media": "application/json",
 								},
 							},
 						},

@@ -3,5 +3,16 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API key authentication via query parameter",
+      "Basic HTTP authentication",
+      "Production server",
+      "Success message",
+      "Successful response",
+      "Successfully updated settings",
+      "The Multifon Client API allows users to manage their account through GET and POST methods. Users can retrieve and set routing, calling lines, status, password, balance, and profile information using specific URL parameters."
+    ]
+  }
 }

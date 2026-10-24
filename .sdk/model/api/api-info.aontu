@@ -9,6 +9,17 @@ main: {
       }
       description: "The Multifon Client API allows users to manage their account through GET and POST methods. Users can retrieve and set routing, calling lines, status, password, balance, and profile information using specific URL parameters."
       security: {
+        alternatives: [
+          [
+            {
+              in: "header"
+              name: "Authorization"
+              prefix: "Basic"
+              scheme: "BasicAuth"
+              type: "http"
+            }
+          ]
+        ]
         in: "query"
         name: "auth"
         prefix: ""

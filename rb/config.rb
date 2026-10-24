@@ -79,6 +79,7 @@ module MultifonClientConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -145,9 +146,12 @@ module MultifonClientConfig
                   },
                   "select" => {
                     "exist" => [
-                      "auth",
                       "method",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -209,6 +213,25 @@ module MultifonClientConfig
                     "exist" => [
                       "method",
                     ],
+                  },
+                  "body" => {
+                    "alternatives" => [
+                      {
+                        "fields" => [
+                          {
+                            "name" => "value",
+                          },
+                        ],
+                        "kind" => "form",
+                        "media" => "application/x-www-form-urlencoded",
+                      },
+                    ],
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

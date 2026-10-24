@@ -54,6 +54,14 @@ const utility_1 = require("../../utility");
         const ent = testsdk.AccountManagement();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.MultifonClientSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.AccountManagement().load({ "auth": 1, "method": "x" }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.MULTIFON_CLIENT_TEST_LIVE;
         for (const op of ['load']) {
@@ -62,7 +70,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "account_management", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "auth", "or": "auth", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "method", "or": "method", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/api", "q": { "exist": ["auth", "method"] }, "r": {}, "s": [{ "lit": "api" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "account_management", "name__orig": "account_management", "Name": "AccountManagement", "name_": "account_management", "name-": "account-management", "NAME": "ACCOUNT_MANAGEMENT", "index$": 0 }, { "active": true, "entity": "account_management", "key$": "BasicAccountManagementFlow", "kind": "basic", "name": "BasicAccountManagementFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "account_management_ref01", "srcdatavar": "account_management_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-account_management_ref01" } }], "index$": 0 }] }, 'AccountManagement', { "GET /api": { "protocol": "http", "parameters": [{ "name": "method", "in": "query", "description": "The method to retrieve specific information", "required": true, "schema": { "type": "string", "enum": ["getRouting", "getCallingLines", "getStatus", "getBalance", "getProfile"] }, "index$": 0 }, { "name": "auth", "in": "query", "description": "Authentication token or credentials", "required": false, "schema": { "type": "string" }, "index$": 1 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": {}, "name": "account_management", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /api", "source": "openapi3", "version": 2 }, "g": { "query": [{ "a": true, "k": "query", "n": "auth", "or": "auth", "r": false, "t": "`$STRING`", "index$": 0 }, { "a": true, "k": "query", "n": "method", "or": "method", "r": true, "t": "`$STRING`", "index$": 1 }] }, "k": "http", "m": "GET", "o": "/api", "q": { "exist": ["method"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "account_management", "name__orig": "account_management", "Name": "AccountManagement", "name_": "account_management", "name-": "account-management", "NAME": "ACCOUNT_MANAGEMENT", "index$": 0 }, { "active": true, "entity": "account_management", "key$": "BasicAccountManagementFlow", "kind": "basic", "name": "BasicAccountManagementFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "account_management_ref01", "srcdatavar": "account_management_ref01_data", "suffix": "_dt0" }, "m": {}, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-account_management_ref01" } }], "index$": 0 }] }, 'AccountManagement', { "GET /api": { "protocol": "http", "parameters": [{ "name": "method", "in": "query", "description": "The method to retrieve specific information", "required": true, "schema": { "type": "string", "enum": ["getRouting", "getCallingLines", "getStatus", "getBalance", "getProfile"] }, "index$": 0 }, { "name": "auth", "in": "query", "description": "Authentication token or credentials", "required": false, "schema": { "type": "string" }, "index$": 1 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -76,6 +84,11 @@ const utility_1 = require("../../utility");
         (0, node_assert_1.default)(null != account_management_ref01_data_dt0);
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

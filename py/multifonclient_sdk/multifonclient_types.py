@@ -38,5 +38,9 @@ class ApiCreateDataRequired(TypedDict):
 
 
 class ApiCreateData(ApiCreateDataRequired, total=False):
-    message: str
-    success: bool
+    currentPassword: Any
+    enabled: Any
+    lines: Any
+    newPassword: Any
+    rules: Any
+    status: Any
